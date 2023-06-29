@@ -1,0 +1,26 @@
+<ejs-gantt id="ganttDefault" height="auto" [dataSource]="data" [taskFields]="taskSettings"
+           [timelineSettings]="timelineSettings" [treeColumnIndex]="0"
+           [allowSelection]="true" dateFormat="MMM dd, y" [projectStartDate]="projectStartDate"
+           [projectEndDate]="projectEndDate" [highlightWeekends]="true"
+           [gridLines]="gridLines"
+           [resources]="resources" [splitterSettings]="splitterSettings">
+  <e-columns>
+    <e-column field="TaskName" headerText="Phase" width="250">
+      <ng-template #template let-data>
+        <span>
+          <mat-checkbox [checked]="getChecked(data.ganttProperties.taskId)" (change)="onCheckboxChanged($event.checked, data.ganttProperties.taskId)"
+                        *ngIf="!data.ganttProperties.autoStartDate"></mat-checkbox>
+          <span style="margin-left: 5px"
+                *ngIf="!data.ganttProperties.autoStartDate">{{data.ganttProperties.taskName}}</span>
+          <span style="margin-left: 5px;" class="hover-pointer" *ngIf="!!data.ganttProperties.autoStartDate"
+                (dblclick)="phaseEditRequested(data.ganttProperties.taskId)">{{data.ganttProperties.taskName}}</span>
+        </span>
+      </ng-template>
+    </e-column>
+    <e-column field="Progress">
+      <ng-template #template let-data>
+        <span *ngIf="data.ganttProperties.autoStartDate">{{getProgress(data.ganttProperties.taskId)}}%</span>
+      </ng-template>
+    </e-column>
+  </e-columns>
+</ejs-gantt>

@@ -1,0 +1,44 @@
+@use '../../../shared/colors.scss' as colors;
+
+.container {
+  margin: 36px;
+  display: flex;
+  flex-direction: column;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.table-header th{
+  align-self: start;
+  text-align: start;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: colors.$gray5;
+}
+
+.table-element{
+  height: 72px;
+  border: none;
+  border-top: 10px solid #FAFAFA;
+}
+
+.table-element td { 
+  background-color: colors.$primary1;
+  border: none;
+  margin: 0px;
+}
+
+.table-element td:first-child{
+  padding-left: 10px;
+  font-weight: 600;
+}
+
+.table-element td:last-child{
+  color: colors.$gray9;
+  font-weight: 500;
+}

@@ -1,0 +1,3 @@
+<div *ngFor="let phase of phases; let i = index" [attr.data-index]="i" class="arrow" [ngStyle]="getStyles(i)">
+  <span class="phase-name">{{phase.name}}</span>
+</div>

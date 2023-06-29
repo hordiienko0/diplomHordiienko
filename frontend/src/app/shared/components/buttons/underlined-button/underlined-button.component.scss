@@ -1,0 +1,24 @@
+@use "../../../colors.scss" as colors;
+
+.underlined-button {
+  height: 20px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  text-decoration: none;
+  color: colors.$gray8;
+  text-underline-offset: 0.4rem;
+
+  &:hover {
+    text-decoration: underline;
+    color: colors.$primary5
+  }
+
+  &:active {
+    text-decoration: underline;
+    font-weight: 600;
+    text-decoration-thickness: 2px;
+    color: colors.$primary4;
+  }
+
+}

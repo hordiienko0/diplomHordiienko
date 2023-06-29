@@ -1,0 +1,31 @@
+@use '../../../../shared/colors' as colors;
+
+:host {
+  padding: 22px;
+  min-width: 441px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #F3F4F8;
+  box-shadow: 0 12px 12px rgba(119, 121, 134, 0.3);
+}
+
+app-underlined-button ::ng-deep * {
+  font-size: 16px !important;;
+  line-height: 24px !important;;
+  color: colors.$primary4 !important;
+  cursor: pointer;
+}
+
+::ng-deep .mat-form-field {
+  width: 100%;
+}
+
+.confirmation-buttons {
+  display: flex;
+  justify-content: flex-end;
+
+  .cancel-btn ::ng-deep button {
+    color: colors.$gray7;
+  }
+}

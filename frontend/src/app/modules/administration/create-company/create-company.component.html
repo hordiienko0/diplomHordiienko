@@ -1,0 +1,35 @@
+<div class="image-column"></div>
+
+<div>
+  <div class="content-column">
+    <div class="content-padding">
+      <button mat-button class="btn-back" (click)="close()">← Назад</button>
+
+      <div class="heading">Реєстрація нової компанії</div>
+
+      <form [formGroup]="form" (submit)="submit()">
+        <div id="CompanyIdDiv">
+          <div>Номер компанії</div>
+          <div>{{NewCompanyId}}</div>
+        </div>
+
+        <app-input label="Назва компанії" type="text" [control]="name" [errorMessage]="nameError()">
+        </app-input>
+
+        <app-input label="Електронна адреса" type="email" [control]="email" [errorMessage]="emailError()">
+        </app-input>
+
+        <app-input label="Країна" type="text" [control]="country" [errorMessage]="countryError()">
+        </app-input>
+
+        <app-input label="Місто" type="text" [control]="city" [errorMessage]="cityError()">
+        </app-input>
+
+        <app-input label="Адрес" type="text" [control]="address" [errorMessage]="addressError()">
+        </app-input>
+
+        <app-large-button type="submit">Створити</app-large-button>
+      </form>
+    </div>
+  </div>
+</div>

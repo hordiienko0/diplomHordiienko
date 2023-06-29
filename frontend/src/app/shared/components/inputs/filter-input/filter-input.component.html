@@ -1,0 +1,13 @@
+<mat-form-field class="filter-field" [class.visible]="barVisible">
+  <mat-label>{{label}}</mat-label>
+  <mat-icon matPrefix svgIcon="search" (click)="toggleInputBar()"></mat-icon>
+  <input matInput [formControl]="formControl"
+         [placeholder]="placeholder"
+         value="{{filter$ | async}}"
+         [class.invisible]="!barVisible"
+  >
+  <mat-icon matSuffix svgIcon="cross"
+            [class.invisible]="!barVisible"
+            (click)="onCrossClicked()"
+  ></mat-icon>
+</mat-form-field>

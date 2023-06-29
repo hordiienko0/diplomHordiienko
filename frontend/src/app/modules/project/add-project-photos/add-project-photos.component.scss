@@ -1,0 +1,28 @@
+@import 'src/app/shared/colors.scss';
+.image-img {
+  height: 20vh;
+  min-width: 10vw;
+  float: right;
+}
+.image-img:hover {
+  cursor: pointer;
+}
+.image-input {
+  display: none;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 5vh;
+}
+
+.dropzone {
+  height: 20vh;
+  width: 35vw;
+  border: 0;
+  border-radius: 0;
+  background-image: url('../../../../assets/images/upload-photo-input.svg');
+}
+.loaded {
+  background-image: none;
+}

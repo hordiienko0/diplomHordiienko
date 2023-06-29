@@ -1,0 +1,10 @@
+<app-modal-dialog-savecancel title="Rename" *ngIf="data">
+  <form [formGroup]="form" (submit)="this.submit()"></form>
+  <div class="container">
+    <app-input [formControl]="name" title="FileName" [placeholder]="data.name" ngDefaultControl></app-input>
+    <div class="buttons">
+      <div class="secondary-btn" (click)="this.cancel()">Cancel</div>
+      <div class="primary-btn" (click)="this.submit()">Save</div>
+    </div>
+  </div>
+</app-modal-dialog-savecancel>

@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="card-header">
+    <span class="selected-text1">Проектні будівлі</span>
+    <button mat-icon-button (click)="isAdding=true">
+      <mat-icon svgIcon="plus"></mat-icon>
+    </button>
+  </div>
+  <div class="buildings-list">
+    <app-building-adding-list-item *ngIf="isAdding"
+                                   [placeholder]="'Add A Project Buildings'"
+                                   (cancelClicked)="isAdding=false"
+                                   (submitClicked)="onSubmitAdding($event)"></app-building-adding-list-item>
+    <app-buildings-list-item *ngFor="let building of buildings$ | async"
+                             [building]="building">
+    </app-buildings-list-item>
+  </div>
+</div>

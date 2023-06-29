@@ -1,0 +1,29 @@
+@use "../../shared/colors" as colors;
+
+.menu-wrapper{
+  display: flex;
+  width: 100%;
+}
+.action-box{
+  width: 100%;
+  justify-items: right;
+}
+.load{
+  margin-left: 3em;
+}
+:host ::ng-deep {
+  .mat-ink-bar {
+    display: none;
+  }
+
+  .mat-tab-nav-bar, .mat-tab-header {
+    border-bottom: 0;
+  }
+
+  .mat-tab-label-active > .mat-tab-label-content {
+    color: colors.$primary4;
+    font-weight: 600;
+    border-bottom: 2px solid colors.$primary4;
+  }
+}
+

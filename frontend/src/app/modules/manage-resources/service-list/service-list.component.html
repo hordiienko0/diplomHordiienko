@@ -1,0 +1,111 @@
+<ngx-spinner></ngx-spinner>
+<div class="add-search-wrapper">
+  <app-filter-input (onSearchQuery)="searchService($event)"></app-filter-input>
+  <button class="add-button" mat-icon-button aria-label="Add service" (click)="add()">
+    <mat-icon svgIcon="plus"></mat-icon>
+  </button>
+</div>
+
+
+<table mat-table [dataSource]="services$" class="mat-elevation-z0">
+  <form [formGroup]="form">
+
+    <ng-container class="mat-column" matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef>Тип</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="type-wrapper" *ngIf="element.id!=undefined && !isEditRow(element.id)">
+          <div class="type-box" *ngFor="let type of element.types">{{type}}</div>
+        </div>
+        <app-autocomplete *ngIf="isAddClicked && element.id==undefined||isEditRow(element.id)"
+                          [options]="(types$|async)!" (outputOptions)="recieveTypes($event)"
+                          [inputOptions]="selectedTypes!"></app-autocomplete>
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="company">
+      <th class="mat-column" mat-header-cell *matHeaderCellDef (click)="sortService('company')">
+        Компанії
+        <button mat-icon-button class="sort" *ngIf="sortedLine=='company'">
+          <mat-icon svgIcon="sort"></mat-icon>
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="element.company&&!isEditRow(element.id)">
+          {{element.company}}
+          <button mat-icon-button class="button-copy" [cdkCopyToClipboard]="element.company">
+            <mat-icon svgIcon="copy"></mat-icon>
+          </button>
+        </div>
+        <app-input *ngIf="!element.company&& isAddClicked||isEditRow(element.id)"
+                   [control]="company" [errorMessage]="companyError()" ></app-input>
+      </td>
+    </ng-container>
+
+    <ng-container class="mat-column" matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Електронна пошта</th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="element.email&&!isEditRow(element.id)">
+          {{element.email}}
+          <button mat-icon-button class="button-copy" [cdkCopyToClipboard]="element.email">
+            <mat-icon svgIcon="copy"></mat-icon>
+          </button>
+        </div>
+        <app-input *ngIf="!element.email&& isAddClicked||isEditRow(element.id)"
+                   [control]="email" [errorMessage]="emailError()"></app-input>
+      </td>
+    </ng-container>
+
+    <ng-container class="mat-column" matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef> Телефон</th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="element.phone&&!isEditRow(element.id)">
+          {{element.phone}}
+          <button mat-icon-button class="button-copy" [cdkCopyToClipboard]="element.phone">
+            <mat-icon svgIcon="copy"></mat-icon>
+          </button>
+        </div>
+        <app-input *ngIf="!element.phone&& isAddClicked||isEditRow(element.id)"
+                   [control]="phone" [errorMessage]="phoneError()"></app-input>
+      </td>
+    </ng-container>
+
+    <ng-container class="mat-column" matColumnDef="website">
+      <th mat-header-cell *matHeaderCellDef> Веб-сайт</th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="element.website&&!isEditRow(element.id)">
+          <a href="{{element.website}}" target="_blank">{{element.website}}</a>
+          <button mat-icon-button class="button-copy" [cdkCopyToClipboard]="element.website">
+            <mat-icon svgIcon="copy"></mat-icon>
+          </button>
+        </div>
+        <app-input *ngIf="!element.website&& isAddClicked||isEditRow(element.id)"
+                   [control]="website" [errorMessage]="websiteError()"></app-input>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action-first">
+      <th mat-header-cell *matHeaderCellDef class="w-100 th-right"></th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button class="button-edit" *ngIf="!isEditRow(row.id)&&row.id!=undefined&&!isAddClicked"
+                (click)="showData(row)">
+          <mat-icon svgIcon="pencil"></mat-icon>
+        </button>
+        <button mat-icon-button class="button-edit" *ngIf="!isEditRow(row.id)&&row.id!=undefined&&!isAddClicked"
+                (click)="delete(row.id)">
+          <mat-icon svgIcon="trash"></mat-icon>
+        </button>
+        <button mat-icon-button class="button-edit" type="submit"
+                *ngIf="isEditRow(row.id)||row.id==undefined"
+                (click)="submitAdding(form.value)">
+          <mat-icon svgIcon="approve"></mat-icon>
+        </button>
+        <button mat-icon-button class="button-edit" (click)="cancelEdit()" *ngIf="isEditRow(row.id)||row.id==undefined">
+          <mat-icon svgIcon="cancel"></mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </form>
+</table>

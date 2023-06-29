@@ -1,0 +1,62 @@
+.scroller {
+  height: 100%;
+}
+
+.scroller section {
+  height: 95%;
+
+}
+.section-first{
+  background-image: url("../../../../assets/images/sign-up.png");
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.section-second{
+  background-image: url("../../../../assets/images/buildings.png");
+  background-size: 100% 100%;
+  text-align: center;
+}
+.section-third{
+  background-image: url("../../../../assets/images/more-info-page.png");
+  background-size: cover;
+  text-align: center;
+
+}
+.logo{
+  background: black;
+  font-size: clamp(36px, 7vw, 50px);
+  color: white;
+  font-family: 'Inter';
+  padding: 0.5em;
+  width: 20%;
+  text-align: center;
+}
+.first-page-text{
+  margin-top: 3%;
+  text-align: center;
+
+}
+h1, h2, p{
+  font-family: 'Poppins';
+  font-style: normal;
+}
+h2{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+}
+app-large-button{
+  margin-top: 3%;
+}
+h1{
+  padding-top: 5%;
+  font-weight: bold;
+}
+p{
+  padding: 0 10%;
+  line-height: 2em;
+  font-size: 18px
+}

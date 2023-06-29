@@ -1,0 +1,10 @@
+.hover-pointer:hover {
+  cursor: pointer;
+}
+
+:host::ng-deep {
+  .e-gantt-splitter {
+    width: 100% !important;
+  }
+
+}

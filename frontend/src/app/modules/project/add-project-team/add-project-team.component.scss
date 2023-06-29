@@ -1,0 +1,226 @@
+@import 'src/app/shared/colors.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.member-row {
+  padding: 12px;
+  color: #181A25;
+  background: #FFFFFF;
+  display: flex;
+
+  > :first-child {
+    flex: 50%;
+  }
+
+  + .member-row {
+    margin-top: 8px;
+  }
+
+  .member-role {
+    background: #FFEBD3;
+    width: fit-content;
+    padding: 4px 8px;
+  }
+
+  .member-name {
+    font-weight: 600;
+    margin-left: 16px;
+  }
+
+  .member-email {
+    margin-top: 9px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+
+    &:hover .hover-icon {
+      visibility: visible;
+      width: fit-content;
+      margin-left: 5px;
+    }
+
+  }
+
+  .close-btn {
+    display: flex;
+    align-items: center;
+    text-align: right;
+    justify-content: flex-end;
+  }
+
+  &:hover .close-btn .hover-icon {
+    visibility: visible;
+    width: fit-content;
+    margin-left: 5px;
+  }
+
+  .member-phone {
+    display: flex;
+    align-items: center;
+    text-align: right;
+    justify-content: flex-end;
+    color: #313345;
+
+    &:hover .hover-icon {
+      visibility: visible;
+      width: fit-content;
+      margin-left: 5px;
+    }
+
+  }
+
+  .hover-icon {
+    visibility: hidden;
+    width: 0;
+    cursor: pointer;
+    margin-left: 0;
+  }
+
+}
+
+.add-members-btn {
+  color: #505263FF;
+  background-color: transparent;
+
+  padding: 8px 40px;
+
+  border: 2px solid #fdbc92;
+  border-radius: 0;
+
+  text-align: center;
+  font-weight: 400;
+  font-size: 14px;
+  font-family: 'Poppins';
+  line-height: 20px;
+
+  &:hover {
+    color: $gray10;
+    background-color: #9CC3FF;
+
+    padding: 10px 40px;
+
+    border: none;
+  }
+
+  mat-icon {
+    margin-right: 8px;
+  }
+
+}
+
+.add-members-overlay {
+  background-color: #FFF6EA;
+  width: 466px;
+  padding: 12px;
+
+  > * {
+    width: 100%;
+  }
+
+  ::ng-deep {
+
+    mat-form-field {
+      width: 100%;
+    }
+
+    .mat-form-field-flex {
+      height: fit-content !important;
+    }
+
+    .mat-form-field-infix {
+      border-top: none;
+      padding-bottom: 0.25em;
+    }
+
+  }
+
+  .search-results {
+    min-height: 100px;
+    max-height: 270px;
+    margin-top: 4px;
+    background: white;
+    overflow: scroll;
+
+    .search-result {
+      margin: 16px 0;
+
+      ::ng-deep {
+
+        .mat-checkbox-inner-container {
+          margin: auto 15px;
+        }
+
+        .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+          background-color: $primary4 !important;
+        }
+
+        .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+        .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+          background-color: $primary4;
+        }
+
+      }
+
+      .name {
+        font-weight: 600;
+        color: $gray9;
+      }
+
+      .role {
+        color: $gray7;
+      }
+
+    }
+  }
+
+  .selected-container {
+    margin-top: 12px;
+    gap: 12px;
+    display: flex;
+    flex-wrap: wrap;
+
+    .selected-item {
+      width: fit-content;
+      padding: 4px 11px 4px 8px;
+      background: $orange2;
+      display: flex;
+
+      .name {
+        font-weight: 600;
+        color: $gray9;
+      }
+
+      .role {
+        color: $gray7;
+      }
+
+      .close {
+        margin: auto 0 auto 7px;
+        height: 22px;
+        width: 22px;
+      }
+
+    }
+
+  }
+
+  .confirmation-buttons {
+    gap: 24px;
+    display: flex;
+    margin-top: 12px;
+
+    :first-child {
+      margin-left: auto;
+    }
+
+    .cancel-btn ::ng-deep button {
+      color: $gray7;
+    }
+
+  }
+
+}

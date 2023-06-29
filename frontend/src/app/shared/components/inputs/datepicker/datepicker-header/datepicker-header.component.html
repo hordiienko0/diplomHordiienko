@@ -1,0 +1,16 @@
+<div class="datepicker-header">
+  <div class="datepicker--header-month">
+    <button mat-icon-button (click)="previousClicked(_calendar.currentView)">
+      <mat-icon svgIcon="caret-left"></mat-icon>
+    </button>
+    <span class="datepicker-header-month-label selected-text2">{{periodLabel}}</span>
+    <button mat-icon-button (click)="nextClicked(_calendar.currentView)">
+      <mat-icon svgIcon="caret-right"></mat-icon>
+    </button>
+  </div>
+  <button class="datepicker-header-year" (click)="toggleCalendar()">
+    {{yearLabel}}
+    <mat-icon svgIcon="caret-down" *ngIf="_calendar.currentView == 'month'"></mat-icon>
+    <mat-icon svgIcon="caret-up" *ngIf="_calendar.currentView != 'month'"></mat-icon>
+  </button>
+</div>

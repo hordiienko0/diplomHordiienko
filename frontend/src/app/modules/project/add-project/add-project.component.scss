@@ -1,0 +1,37 @@
+
+
+  :host::ng-deep.projectIdContainer>app-block-with-id {
+    width: 100%;
+  }
+  
+  :host::ng-deepapp-input>mat-form-field {
+    width: 100%;
+  }
+  
+  :host::ng-deep.dateContainer {
+    display: flex;
+    justify-content: space-between;
+  
+    >app-datepicker {
+      width: 40%;
+  
+      >.mat-form-field {
+        width: 100%;
+      }
+    }
+  }
+  
+  :host::ng-deep.blockDialog {
+    margin-bottom: 24px;
+  }
+  
+  :host::ng-deep.projectIdContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  :host::ng-deep.alert-danger {
+    color: red;
+  }
+

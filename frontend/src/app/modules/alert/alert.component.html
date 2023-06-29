@@ -1,0 +1,17 @@
+<div class="alert-container">
+  <div class="{{ data.type }} alert-status">
+    {{ data.type | titlecase }}
+  </div>
+  <div class="alert-content">
+    <div class="{{ data.type }} alert-message">
+      {{ data.message }}
+    </div>
+    <button 
+      class="{{ data.type }} alert-button" 
+      mat-flat-button 
+      (click)="snackBarRef.dismiss()"
+    >
+      {{ data.buttonText }}
+    </button>
+  </div>
+</div>

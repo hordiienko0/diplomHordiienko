@@ -1,0 +1,123 @@
+<ngx-spinner></ngx-spinner>
+<div class="add-search-wrapper">
+  <button class="add-button" mat-icon-button aria-label="Add material" (click)="add()">
+    <mat-icon svgIcon="plus"></mat-icon>
+  </button>
+</div>
+
+<table mat-table [dataSource]="materials$" class="mat-elevation-z0">
+  <form [formGroup]="form">
+
+    <ng-container matColumnDef="materialType">
+      <th class="mat-column" mat-header-cell *matHeaderCellDef>Тип</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="type-wrapper" *ngIf="element.materialType&&!isEditRow(element.id)">
+          {{element.materialType}}
+        </div>
+        <app-default-autocomplete *ngIf="!element.materialType&& isAddClicked||isEditRow(element.id)"
+                                  [options]="(mapToString()|async)!" [control]="form.controls.materialType">
+        </app-default-autocomplete>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="companyName">
+      <th class="mat-column" mat-header-cell *matHeaderCellDef>Компанія</th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="element.companyName&&!isEditRow(element.id)">
+          {{element.companyName}}
+        </div>
+        <app-input *ngIf="!element.companyName&& isAddClicked||isEditRow(element.id)"
+                   [control]="companyName" [errorMessage]="companyError()"></app-input>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="companyAddress">
+      <th class="mat-column" mat-header-cell *matHeaderCellDef>Адреса зберігання</th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="element.companyAddress&&!isEditRow(element.id)">
+          {{element.companyAddress}}
+        </div>
+        <app-input *ngIf="!element.companyAddress&& isAddClicked||isEditRow(element.id)"
+                   [control]="companyAddress" [errorMessage]="companyAddressError()"></app-input>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="amount">
+      <th class="mat-column" mat-header-cell *matHeaderCellDef>Кількість</th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="element.amount&&!isEditRow(element.id)">
+          {{element.amount}}
+        </div>
+        <app-input *ngIf="!element.amount&& isAddClicked||isEditRow(element.id)"
+                   [control]="amount" [errorMessage]="priceError()"></app-input>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="price">
+      <th class="mat-column" mat-header-cell *matHeaderCellDef>Ціна за одиницю</th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="element.price&&!isEditRow(element.id)" (click)="isEditRow(element.id)">
+          {{element.price|currency}}
+        </div>
+        <app-input *ngIf="!element.price&& isAddClicked||isEditRow(element.id)"
+                   [control]="price" [errorMessage] = "priceError()"></app-input>
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="measurement">
+      <th class="mat-column" mat-header-cell *matHeaderCellDef>Одиниця виміру</th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="element.measurement&&!isEditRow(element.id)">
+          {{element.measurement}}
+        </div>
+        <app-dropdown *ngIf="!element.measurement&& isAddClicked||isEditRow(element.id)"
+                      class="wide" label="Measurement"
+                      [control]="measurement" [options]="measurement$" [required]="true">
+        </app-dropdown>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="totalAmount">
+      <th class="mat-column" mat-header-cell *matHeaderCellDef>Загальна сума</th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="element.totalAmount&&!isEditRow(element.id)">
+          {{element.totalAmount|currency}}
+        </div>
+        <div *ngIf="!element.totalAmount&& isAddClicked||isEditRow(element.id)">
+          {{element.totalAmount|currency}}
+        </div>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="date">
+      <th class="mat-column" mat-header-cell *matHeaderCellDef>Дата</th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="element.date&&!isEditRow(element.id)">
+          {{element.date}}
+        </div>
+        <div *ngIf="!element.date&& isAddClicked||isEditRow(element.id)">
+          {{element.date}}
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action-first">
+      <th mat-header-cell *matHeaderCellDef class="w-100 th-right"></th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button class="button-edit" type="submit"
+                (click)="showData(row)" *ngIf="!isEditRow(row.id)&&row.id!=undefined">
+          <mat-icon svgIcon="pencil"></mat-icon>
+        </button>
+        <button mat-icon-button class="button-edit" type="submit"
+                (click)="delete(row.id)" *ngIf="!isEditRow(row.id)&&row.id!=undefined">
+          <mat-icon svgIcon="trash"></mat-icon>
+        </button>
+        <button mat-icon-button class="button-edit" type="submit"
+                *ngIf="isEditRow(row.id)||row.id==undefined"
+                (click)="submitAdding(form.value)">
+          <mat-icon svgIcon="approve"></mat-icon>
+        </button>
+        <button mat-icon-button class="button-edit" (click)="cancelEdit()" *ngIf="isEditRow(row.id)||row.id==undefined">
+          <mat-icon svgIcon="cancel"></mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </form>
+</table>

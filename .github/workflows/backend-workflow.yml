@@ -1,0 +1,72 @@
+name: "Ctor Backend Build"
+
+on:
+  push:
+    branches:
+      - dev
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - dev
+
+env:
+  AZURE_WEBAPP_NAME: ctor-backend
+  AZURE_WEBAPP_PACKAGE_PATH: './backend/published'
+  WEBAPP_SOURCE_PATH: './backend/Ctor.sln'
+  DOTNET_VESION: '6.0.x'
+
+jobs:
+  # test_job:
+  #   name: Test
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+
+  #     - name: Setup ASP.NET Core SDK
+  #       uses: actions/setup-dotnet@v2
+  #       with:
+  #         dotnet-version: ${{ env.DOTNET_VERSION }}
+  #         include-prerelease: true
+
+  #     - name: Restore
+  #       run: dotnet restore ${{ env.WEBAPP_SOURCE_PATH }}
+        
+  #     - name: Test
+  #       run: dotnet test ${{ env.WEBAPP_SOURCE_PATH }} --no-restore --verbosity normal
+
+  build_job:
+    # needs: test_job
+    runs-on: ubuntu-latest
+    name: Build And Deploy
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup ASP.NET Core SDK
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+          include-prerelease: true
+
+      - name: Restore
+        run: dotnet restore ${{ env.WEBAPP_SOURCE_PATH }}
+      
+      - name: Build
+        run: dotnet build ${{ env.WEBAPP_SOURCE_PATH }} -c Release
+
+      - name: Publish
+        run: dotnet publish ${{ env.WEBAPP_SOURCE_PATH }} --configuration Release --no-build --output ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+
+      # - name: Upload Build Artifacts
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: ctor-artifact
+      #     path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+      #     if-no-files-found: error
+          
+      - name: Deploy
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}

@@ -1,0 +1,21 @@
+<article class="scroller">
+  <section class="section-first">
+    <div class="logo">CTOR</div>
+    <div class="first-page-text">
+      <h2>Ласкаво просимо</h2>
+      <h2>Щоб увійти на сайт, вам необхідно авторизуватися.</h2>
+    </div>
+    <app-large-button *ngIf="!(isLoggedIn$ | async)" routerLink="/login">Увійдіть</app-large-button>
+    <app-large-button *ngIf="(isLoggedIn$ | async) && !(isAdmin$ | async)" routerLink="/projects">Увійдіть</app-large-button>
+    <app-large-button *ngIf="(isLoggedIn$ | async) && (isAdmin$ | async)" routerLink="/administration">Увійдіть</app-large-button>
+  </section>
+  <section class="section-second">
+    <h1>Про проект</h1>
+    <p>Ctor це веб-програма для будівельних компаній.
+      Платформа дозволяє планувати та управляти будівництвом.
+      Передбачається зберігання всієї проектної документації, інформації про матеріали та постачальників.</p>
+    <p>Ctor забезпечує розробку дорожніх карт та управління робочими процесами для архітекторів та менеджерів.
+      Ctor показує поточний стан будівлі за допомогою інформаційних панелей та звітів.
+      Ctor є багатокористувацькою системою B2B і забезпечує індивідуальну конфігурацію для кожного клієнта.</p>
+  </section>
+</article>

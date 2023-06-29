@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Ctor.Domain.Entities.Assignee">
+    <Position X="11.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Assignee.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="User" />
+      <Property Name="Project" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Ctor.Domain.Entities.Building">
+    <Position X="4.5" Y="7.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAACAAADAAAAAAAgAAAAAIAAAQ=</HashCode>
+      <FileName>Entities\Building.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Project" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Ctor.Domain.Entities.BuildingBlock">
+    <Position X="1.5" Y="7" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>BAAAADAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Entities\BuildingBlock.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Building" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Ctor.Domain.Entities.Company">
+    <Position X="11.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AFAQQCAAACIggAAIAIAAAAAAAAIAAAACAAABAAAAAQA=</HashCode>
+      <FileName>Entities\Company.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CompanyLogo" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Ctor.Domain.Entities.CompanyLogo">
+    <Position X="11.75" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAIAAAAAAAAAAAAAAAAAAQAARAAAAAA=</HashCode>
+      <FileName>Entities\CompanyLogo.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Company" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Ctor.Domain.Entities.Document">
+    <Position X="3" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAIAAAAAAAQAAAAAAAQAAAAAQAAAAAA=</HashCode>
+      <FileName>Entities\Document.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ProjectDocument" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Ctor.Domain.Entities.Material">
+    <Position X="14.5" Y="8.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAQAAQIAAAEAAAACAACAAAAAAAABgAAQBAAAAAA=</HashCode>
+      <FileName>Entities\Material.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Measurement" />
+      <Property Name="Company" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Ctor.Domain.Entities.Measurement">
+    <Position X="17.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Measurement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ctor.Domain.Entities.Phase">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAJEAhAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Entities\Phase.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Project" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Ctor.Domain.Entities.PhaseStep">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAADAAAAAAACAAAAAAAAAgAAAAAAAAAAAAAEEABAA=</HashCode>
+      <FileName>Entities\PhaseStep.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Building" />
+      <Property Name="Phase" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Ctor.Domain.Entities.Project">
+    <Position X="9" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAABABAEAAIgAAAICAAQEAgEJAIgAAACAAAABAIAhAA=</HashCode>
+      <FileName>Entities\Project.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Company" />
+      <Property Name="User" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Ctor.Domain.Entities.ProjectDocument">
+    <Position X="6.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABgAAAAAAAAAAAAACAAABAAAAAQCAAAAAAEAAAA=</HashCode>
+      <FileName>Entities\ProjectDocument.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Building" />
+      <Property Name="Project" />
+      <Property Name="Document" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Ctor.Domain.Entities.ProjectNote">
+    <Position X="6.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAACAgABAAAAAABAAAACAAAAAA=</HashCode>
+      <FileName>Entities\ProjectNote.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Project" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Ctor.Domain.Entities.ProjectPhoto">
+    <Position X="9.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAACAAABAAAAAAAAQAAQAAAAAA=</HashCode>
+      <FileName>Entities\ProjectPhoto.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Project" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Ctor.Domain.Entities.RequiredMaterial">
+    <Position X="14.75" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAABAAAAAAAAAAAAQAAACAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Entities\RequiredMaterial.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Material" />
+      <Property Name="Building" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Ctor.Domain.Entities.RequiredService">
+    <Position X="3.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAEIAAA=</HashCode>
+      <FileName>Entities\RequiredServices.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Building" />
+      <Property Name="Vendor" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Ctor.Domain.Entities.Role">
+    <Position X="15.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAQAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Entities\Role.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Users" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Ctor.Domain.Entities.User">
+    <Position X="11.75" Y="4" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEIQQAIAAgAAEAAQUAAAAAAAAAACAAAADAAAAAg=</HashCode>
+      <FileName>Entities\User.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Role" />
+      <Property Name="Company" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Ctor.Domain.Entities.Vendor">
+    <Position X="8.75" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAEAAAACIAgAAAAAAAAAIAAAAAAAAAAAAAJAAAAAA=</HashCode>
+      <FileName>Entities\Vendor.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Company" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,14 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  gap: 3vh; 
+  .image-cropper{
+    max-height: 300px;
+    max-width: 500px;
+    padding: 0;
+  }
+  .buttons{
+    display: flex;
+    justify-content: flex-end;
+  }
+}

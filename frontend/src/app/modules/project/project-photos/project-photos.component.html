@@ -1,0 +1,54 @@
+<ng-container *ngIf="projectPhotos$ | async as projectPhotos">
+  <div
+    class="container"
+    [style.width.px]="width"
+    [style.height.px]="height"
+    *ngIf="projectPhotos | photoToImage as images"
+  >
+    <div class="carousel_container">
+      <carousel
+        #carousel
+        [arrows]="false"
+        [cellsToShow]="1"
+        [dots]="false"
+        [width]="width"
+        [height]="height"
+        [images]="images"
+      >
+      </carousel>
+    </div>
+
+    <div
+      class="buttons_container"
+      [style.width.px]="width"
+      [style.height.px]="height"
+      *ngIf="projectPhotos.length !== 0"
+    >
+      <div class="buttons">
+        <div class="button_delete">
+          <button
+            mat-icon-button
+            (click)="
+              carousel.prev();
+              deleteProjectPhoto(projectPhotos[carousel.activeDotIndex].id)
+            "
+          >
+            <mat-icon [svgIcon]="'trash'"></mat-icon>
+          </button>
+        </div>
+
+        <div class="buttons_carrets">
+          <button mat-icon-button class="button_back" (click)="carousel.prev()">
+            <mat-icon [svgIcon]="'caret_left'"></mat-icon>
+          </button>
+          <button mat-icon-button class="button_next" (click)="carousel.next()">
+            <mat-icon [svgIcon]="'caret_right'"></mat-icon>
+          </button>
+        </div>
+
+        <div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

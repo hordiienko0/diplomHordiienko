@@ -1,0 +1,11 @@
+<mat-form-field appearance="fill">
+  <input *ngIf="control" matInput [matDatepicker]="picker" placeholder="{{placeholder}}" [formControl]="control">
+  <input *ngIf="controlState" matInput [matDatepicker]="picker" placeholder="{{placeholder}}"
+         [ngrxFormControlState]="controlState"
+         [ngrxValueConverter]="dateValueConverter">
+  <mat-datepicker-toggle matSuffix [for]="picker">
+    <mat-icon matDatepickerToggleIcon svgIcon="calendar" *ngIf="!((control?.value) || (controlState?.value))"></mat-icon>
+    <mat-icon matDatepickerToggleIcon svgIcon="calendar-picked" *ngIf="(control?.value) || (controlState?.value)"></mat-icon>
+  </mat-datepicker-toggle>
+  <mat-datepicker #picker disabled="false" [dateClass]="dateClass" [calendarHeaderComponent]="datepickerHeader"></mat-datepicker>
+</mat-form-field>

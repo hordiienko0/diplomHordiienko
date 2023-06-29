@@ -1,0 +1,71 @@
+@use '../../../shared/colors' as colors;
+
+.header {
+  margin: 24px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.header > mat-icon {
+  order: 0;
+}
+
+.header > h2 {
+  order: 1;
+  margin: 0;
+}
+
+.header > .project-status {
+  order: 2;
+  background-color: colors.$primary1;
+  transition: background-color 0.2s ease;
+  padding: 8px 12px;
+  align-content: center;
+  justify-content: center;
+
+  &.project-status-clickable {
+    cursor: pointer;
+
+    &:hover {
+      background-color: colors.$primary3;
+    }
+  }
+
+}
+
+.body{
+    display: flex;
+    justify-content: space-between;
+}
+:host ::ng-deep {
+  .mat-ink-bar {
+    display: none;
+  }
+
+  .mat-tab-nav-bar, .mat-tab-header {
+    border-bottom: 0;
+  }
+
+  .mat-tab-label-active > .mat-tab-label-content {
+    color: colors.$primary4;
+    font-weight: 600;
+    border-bottom: 2px solid colors.$primary4;
+  }
+
+}
+.tab-lvl{
+  position: absolute;
+  z-index: 1000;
+  left: 70%;
+}
+.documentsFilter{
+  display:flex;
+  gap: 10px;
+  align-items: center;
+  *:hover {
+    cursor: pointer;
+  }
+  
+}

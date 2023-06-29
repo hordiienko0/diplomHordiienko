@@ -1,0 +1,6 @@
+<mat-form-field appearance="fill">
+  <mat-label> {{ title }}</mat-label>
+  <input *ngIf="control" [type]="type" matInput [formControl]="control" [placeholder]="placeholder">
+  <input *ngIf="controlState" [type]="type" matInput [placeholder]="placeholder" [ngrxFormControlState]="controlState">
+  <ng-content></ng-content>
+</mat-form-field>

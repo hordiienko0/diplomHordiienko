@@ -1,0 +1,163 @@
+<ng-container *ngIf="companyDetailed$ | async as company">
+  <div class="container" *ngIf="company.id">
+    <div class="header">
+      <div class="header-top">
+        <button mat-icon-button aria-label="arrow_left" routerLink="/company-list">
+          <mat-icon svgIcon="arrow_left"></mat-icon>
+        </button>
+        <h1>{{ company.companyName | uppercase }}</h1>
+        <p class="id">{{ company.id }}</p>
+      </div>
+
+      <div class="logo">
+        <img
+          class="logo-img"
+          alt="Logo"
+          [src]="getImage(company.image)"
+        />
+      </div>
+
+      <div class="description">
+        <p>Опис</p>
+      </div>
+    </div>
+
+    <div class="content">
+      <mat-card class="card-1">
+        <ng-container *ngIf="companyInformationForm$ | async as companyForm">
+          <mat-card-title-group>
+            <mat-card-title>
+              <span>Інформація</span>
+            </mat-card-title>
+            <mat-card-actions >
+              <button
+                *ngIf="!(isEditEnabled$|async)"
+                mat-icon-button
+                aria-label="Pencil"
+                (click)="onFormEdit()"
+              >
+                <mat-icon svgIcon="pencil"></mat-icon>
+              </button>
+              <button
+                *ngIf="(isEditEnabled$|async)"
+                mat-button
+                aria-label="Pencil"
+                (click)="onCancel()"
+              >
+              Скасувати
+              </button>
+              <button
+                *ngIf="(isEditEnabled$|async)"
+                disabled="{{ !companyForm.isValid }}"
+                mat-button
+                aria-label="Save"
+                (click)="
+                  onSave(companyForm.value.address, companyForm.value.email)
+                "
+              >
+              Зберегти
+              </button>
+            </mat-card-actions>
+          </mat-card-title-group>
+
+          <mat-card-content>
+            <form novalidate [ngrxFormState]="companyForm"></form>
+            <div class="card-content">
+              <label>Дата приєднання:</label>
+              <p class="date">{{ company.joinDate }}</p>
+
+              <label for="address">Адреса:</label>
+              <input
+                id="address"
+                class="company-information-input"
+                type="text"
+                [ngrxFormControlState]="companyForm.controls.address"
+              />
+
+              <label for="email">Електронна пошта:</label>
+
+              <input
+                class="input"
+                matInput
+                id="email"
+                class="company-information-input"
+                type="email"
+                [ngrxFormControlState]="companyForm.controls.email"
+              />
+            </div>
+            <p class="warning" *ngIf="companyForm.errors['_address']?.required">
+              Адреса обов'язкова
+            </p>
+            <p class="warning" *ngIf="companyForm.errors['_email']?.required">
+              Обов'язкова наявність електронної пошти
+            </p>
+            <p class="warning" *ngIf="companyForm.errors['_email']?.email">
+              Будь ласка, введіть дійсну адресу електронної пошти
+            </p>
+          </mat-card-content>
+        </ng-container>
+      </mat-card>
+
+      <mat-card class="card-2">
+        <mat-card-title-group>
+          <mat-card-title>
+            <span>Команда</span>
+          </mat-card-title>
+          <mat-card-actions>
+            <button mat-icon-button aria-label="Load a file" (click)="hiddenfileinput.click()">
+              <mat-icon svgIcon="file_plus"></mat-icon>
+              <input style="display: none" type="file" accept=".csv" (change)="onFileSelect(hiddenfileinput.files, company.id)" #hiddenfileinput>
+            </button>
+            <button mat-icon-button aria-label="Add member" (click)="openModal(company.id)">
+              <mat-icon svgIcon="plus"></mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card-title-group>
+
+        <mat-card-content>
+          <cdk-virtual-scroll-viewport
+            appendOnly
+            itemSize="{{ company.members.length }}"
+            class="members-viewport"
+          >
+            <div
+              *cdkVirtualFor="let member of company.members"
+              class="members-item"
+            >
+              <div class="member-info">
+                <div class="member-role">{{ member.roleName }}</div>
+                <div class="member-name">{{ member.firstName }} {{ member.lastName }}</div>
+              </div>
+              <p class="email">{{ member.userEmail }}</p>
+            </div>
+          </cdk-virtual-scroll-viewport>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="card-3">
+        <mat-card-title>Проекти</mat-card-title>
+        <mat-card-content class="projects">
+          <div *ngFor="let project of company.projects" class="company-projects">
+            <div class="company-project">
+              <div class="project-image">
+                <img [src]="getFullImageUrl(project.imageUrl)">
+                <div class="image-amount" *ngIf="project.imageAmount > 1">{{project.imageAmount}} images</div>
+              </div>
+              <div class="company-project-content">
+                <p>{{project.projectName}}</p>
+                <p>{{project.address}}</p>
+                <p>{{project.description}}</p>
+              </div>
+            </div>
+            <div class="company-project-status">
+              <span>
+                {{viewStatus(project.status)}}
+              </span>
+            </div>
+
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</ng-container>

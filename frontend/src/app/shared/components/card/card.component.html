@@ -1,0 +1,23 @@
+<div class="box" (click)="onClicked()"
+     [class.small-box]="!cardInformation.statusBarLabel"
+     [class.large-box]="cardInformation.statusBarLabel">
+  <img src="{{cardInformation.image}}">
+  <div class="box-desc">
+    <div class="date-box">
+      <div class="date">{{cardInformation.date}}</div>
+      <div class="id">{{cardInformation.id}}</div>
+    </div>
+    <div class="title-box">
+      <div class="name">{{cardInformation.title}}</div>
+      <div *ngIf="cardInformation.status" class="status">{{cardInformation.status}}</div>
+    </div>
+    <div class="address">{{cardInformation.subtitle}}</div>
+    <div *ngIf="cardInformation.statusBarLabel" class="progress-bar-label">{{cardInformation.statusBarLabel}}</div>
+
+    <div style="width: 100%">
+      <div class="phase-steps">
+        <div class="step" *ngFor="let i of _dummyArray" [class.done]="i <= cardInformation.statusBarProgress! - 1"></div>
+      </div>
+    </div>
+  </div>
+</div>

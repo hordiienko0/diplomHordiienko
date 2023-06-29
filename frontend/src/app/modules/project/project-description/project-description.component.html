@@ -1,0 +1,106 @@
+<div class="container" *ngIf="project$ | async as project">
+  <app-phase-bar *ngIf="!!project?.phases" [phases]="mapPhases(project.phases)"></app-phase-bar>
+  <div class="cards-container">
+
+    <div class="cards-container-column" *ngIf="projectInformationForm$ | async as projectForm">
+      <form novalidate [ngrxFormState]="projectForm" class="info-card">
+        <div class="card-header">
+          <span class="selected-text1">Shopping Centre Valkea Info</span>
+          <button mat-icon-button *ngIf="!isEditEnabled">
+            <mat-icon svgIcon="pencil" (click)="changeEdit($event)"></mat-icon>
+          </button>
+          <div class="form-buttons">
+            <app-mini-button (click)="onSave(project.id, projectForm.value)" *ngIf="isEditEnabled">Save
+            </app-mini-button>
+            <app-mini-button (click)="onCancel()" *ngIf="isEditEnabled">Close</app-mini-button>
+          </div>
+        </div>
+        <div class="info-card-content">
+          <div class="unchangeble">
+            <div class="info-card-label">
+              Номер проекту:
+            </div>
+            <div class="info-card-input">
+              <span>{{ project.id }}</span>
+            </div>
+          </div>
+          <div>
+            <div class="info-card-content-labels">
+              <div class="info-card-label">
+                Адреса:
+              </div>
+              <div class="info-card-label">
+                Дата початку:
+              </div>
+              <div class="info-card-label">
+                Дата закінчення:
+              </div>
+            </div>
+            <div class="info-card-content-inputs">
+              <div class="info-card-input">
+                <span *ngIf="!isEditEnabled">{{ project.address }}</span>
+                <app-input class="form-input" *ngIf="isEditEnabled" [controlState]="projectForm.controls.address"></app-input>
+              </div>
+              <div class="info-card-input">
+                <span *ngIf="!isEditEnabled">{{ project.startTime | date }}</span>
+                <app-datepicker class="form-input" *ngIf="isEditEnabled"
+                           [controlState]="projectForm.controls.startTime"></app-datepicker>
+              </div>
+              <div class="info-card-input">
+                <span *ngIf="!isEditEnabled">{{ project.endTime | date }}</span>
+                <app-datepicker class="form-input" *ngIf="isEditEnabled"
+                                [controlState]="projectForm.controls.endTime"></app-datepicker>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <app-building-section></app-building-section>
+    </div>
+
+    <div class="cards-container-column">
+      <div class="photos-card">
+        <div class="card-header">
+          <span class="selected-text1">Фотографії проекту</span>
+          <button mat-icon-button (click)="addPhotosModal(project.id)">
+            <mat-icon svgIcon="plus"></mat-icon>
+          </button>
+        </div>
+        <div class="card-img">
+          <app-project-photos [projecId]="projectId" [width]="550"></app-project-photos>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="card-header">
+          <span class="selected-text1">Команда проекту</span>
+          <button mat-icon-button (click)="addTeamModal()">
+            <mat-icon [svgIcon]="(hasTeamMembers$ | async) ? 'pencil' : 'plus'"></mat-icon>
+          </button>
+        </div>
+        <div class="team-card-content" [style]="(hasTeamMembers$ | async) ? '' : 'min-height: 200px;'">
+
+          <div class="member-row" *ngFor="let member of teamMembers$ | async">
+            <div>
+              <div class="member-role">{{member.role}}</div>
+              <div class="member-name">{{member.name}}</div>
+            </div>
+            <div>
+              <span class="member-email" [cdkCopyToClipboard]="member.email">
+                <span>{{member.email}}</span>
+                <mat-icon class="hover-icon" svgIcon="copy"></mat-icon>
+              </span>
+              <span class="member-phone" [cdkCopyToClipboard]="member.phoneNumber">
+                <span>{{member.phoneNumber}}</span>
+                <mat-icon class="hover-icon" svgIcon="copy"></mat-icon>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<app-auth-page-layout>
+  <h1 class="heading">Вхід</h1>
+
+  <form [formGroup]="form" (submit)="submit()">
+    <app-input label="Email" type="email" [control]="email" [errorMessage]="emailError()">
+    </app-input>
+
+    <app-password-input label="Password" [control]="password" [errorMessage]="passwordError()">
+    </app-password-input>
+
+    <app-large-button type="submit">Увійти</app-large-button>
+
+    <app-underlined-button routerLink="/forgot-password">Забули пароль</app-underlined-button>
+  </form>
+
+</app-auth-page-layout>

@@ -1,0 +1,11 @@
+@use '../../../colors.scss' as colors;
+
+:host ::ng-deep .btn {
+  padding: 14px 10px;
+  width: 100%;
+  height: 56px;
+
+  &:active {
+    color: colors.$primary2
+  }
+}

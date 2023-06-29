@@ -1,0 +1,14 @@
+<div class="mad-dialog-body">
+  <div class="mat-dialog-header">
+    <h3 class = "mat-dialog-title" *ngIf="title">{{title}}</h3>
+    <ng-content select="[header-content]" *ngIf="!title">
+
+    </ng-content>
+    <a mat-icon-button (click)="hideDialog()">
+      <mat-icon svgIcon="cross"></mat-icon>
+    </a>
+  </div>
+  <ng-content class="mat-dialog-content">
+
+  </ng-content>
+</div>

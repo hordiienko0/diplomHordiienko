@@ -1,0 +1,53 @@
+<app-modal-dialog-confirmation title="Фаза">
+  <div class="controls">
+    <app-input label="Назва фази" [control]="nameControl"></app-input>
+    <div class="date-controls">
+      <app-datepicker placeholder="Start Date" [control]="startDateControl"></app-datepicker>
+      <app-datepicker placeholder="End Date" [control]="endDateControl"></app-datepicker>
+    </div>
+    <div class="add-buttons">
+      <div class="add-button" (click)="isSectionOpened = !isSectionOpened" cdkOverlayOrigin #section="cdkOverlayOrigin">
+        <mat-icon svgIcon="plus"></mat-icon>
+        Додати розділ
+      </div>
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayOrigin]="section"
+        [cdkConnectedOverlayOpen]="isSectionOpened">
+        <div class="step-controls">
+          <h4>Етапний крок</h4>
+          <app-input label="Назва фази" [control]="nameStepControl"></app-input>
+          <div class="date-controls">
+            <app-datepicker placeholder="Дата початку" [control]="startDateStepControl"></app-datepicker>
+            <app-datepicker placeholder="Дата закінчення" [control]="endDateStepControl"></app-datepicker>
+          </div>
+          <span class="save-btn" (click)="onStepSubmit()">Зберегти</span>
+        </div>
+      </ng-template>
+      <div class="add-button" (click)="isBuildingOpened = !isBuildingOpened" cdkOverlayOrigin #building="cdkOverlayOrigin">
+        <mat-icon svgIcon="plus"></mat-icon>
+        Додати будівлю
+      </div>
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayOrigin]="building"
+        [cdkConnectedOverlayOpen]="isBuildingOpened">
+        <div class="buildings" *ngIf="projectBuildings$ | async as buildings">
+          <div class="building" *ngFor="let building of buildings">
+            <mat-checkbox [checked]="isBuildingInPhaseSteps(building.id)" (change)="onBuildingCheckboxChanged($event.checked, building)"></mat-checkbox>
+            {{building.buildingName}}
+          </div>
+        </div>
+      </ng-template>
+    </div>
+    <div class="steps" *ngIf="phaseSteps.length" >
+      <div class="step" *ngFor="let step of phaseSteps">
+        <mat-checkbox [checked]="step.isDone" (change)="onSubsectionChecked($event.checked, step)"></mat-checkbox>
+        {{step.phaseStepName}}
+        <mat-icon svgIcon="cross" (click)="onSubsectionDelete(step)"></mat-icon>
+      </div>
+    </div>
+    <app-large-button *ngIf="currentProject$ | async as project" (click)="onSubmit(project)">Підтвердитии</app-large-button>
+    <app-underlined-button *ngIf="phaseToEdit" (click)="onDeleteClick()">Видалити</app-underlined-button>
+  </div>
+</app-modal-dialog-confirmation>

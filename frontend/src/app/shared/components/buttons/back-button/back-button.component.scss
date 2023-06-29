@@ -1,0 +1,42 @@
+@use '../../../colors.scss' as colors;
+
+button.back-button {
+  height: 44px;
+  border-radius: 0;
+
+  &:hover {
+    a.content {
+      color: colors.$gray8;
+      border-bottom: 1px solid colors.$gray8;
+    }
+  }
+
+  &:active {
+    background-color: rgba(colors.$primary6, 0.1);
+
+    a.content {
+      color: colors.$gray9;
+      border-bottom: 1px solid colors.$gray9;
+    }
+  }
+}
+
+a.content {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  text-decoration: none;
+  color: colors.$gray7;
+  border-bottom: 1px solid transparent;
+}
+
+a.content>img {
+  height: 24px;
+  width: 24px;
+}
+
+a.content>p {
+  height: 20px;
+  margin: 0;
+  line-height: 24px;
+}

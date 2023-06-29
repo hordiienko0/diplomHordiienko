@@ -1,0 +1,22 @@
+<app-modal-dialog-confirmation title="Додати фото">
+  <div class="container">
+    <ngx-dropzone
+      [ngClass]="this.files.length !== 0 ? 'loaded' : 'ds'"
+      class="dropzone"
+      (change)="onSelect($event)"
+      accept="image/png, image/jpeg"
+    >
+      <ngx-dropzone-preview
+        *ngFor="let f of files"
+        [removable]="true"
+        (removed)="onRemove(f)"
+      >
+        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+      </ngx-dropzone-preview>
+    </ngx-dropzone>
+  
+    <app-large-button #button [disabled]="files.length === 0" (click)="submit()"
+      >Додати</app-large-button
+    >
+  </div>
+</app-modal-dialog-confirmation>

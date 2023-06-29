@@ -1,0 +1,80 @@
+@use '../../../colors' as colors;
+
+.inherited-values {
+  width: inherit;
+  height: inherit;
+}
+
+:host ::ng-deep {
+
+  .mat-form-field-wrapper {
+    padding: 0;
+    align-items: center;
+    display: flex;
+  }
+
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+    padding: 8px 12px;
+    height: 56px;
+    background-color: colors.$white;
+    border: 1px solid transparent;
+    border-radius: 0;
+
+    &:hover {
+      border-color: colors.$gray3;
+    }
+
+    &:invalid {
+      color: colors.$gray10;
+    }
+
+    &:active {
+      color: colors.$gray10;
+    }
+  }
+
+  .mat-form-field-underline {
+    display: none;
+  }
+
+  .mat-form-field-label {
+    color: colors.$gray6;
+  }
+
+  .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+    color: colors.$red4;
+  }
+
+  .mat-focused .mat-form-field-label {
+    color: colors.$gray6;
+  }
+
+  .mat-form-field-invalid .mat-form-field-flex {
+    background-color: colors.$red1;
+  }
+
+  .mat-placeholder-required.mat-form-field-required-marker {
+    display: none
+  }
+
+  .mat-chip-list-wrapper {
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+  }
+
+  .mat-chip.mat-standard-chip {
+    background-color: #AAE4BE;
+    border-radius: 0;
+    height: 28px;
+  }
+
+  .mat-chip.mat-standard-chip::after {
+    background-color: #AAE4BE;
+  }
+
+  .mat-standard-chip .mat-chip-remove .mat-icon:hover {
+    filter: brightness(1.75);
+  }
+}
+

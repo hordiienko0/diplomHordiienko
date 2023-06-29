@@ -1,0 +1,28 @@
+<div class="container" (mouseover)="isMouseOverContainer=true" (mouseleave)="isMouseOverContainer=false"
+     *ngIf="building">
+  <div class="header">
+    <span class="header-name main-text">{{building.buildingName}}</span>
+    <span class="percentage main-text" *ngIf="!isMouseOverContainer">{{building.buildingProgress}}%</span>
+    <button mat-icon-button *ngIf="isMouseOverContainer" (click)="openDialog()">
+      <mat-icon svgIcon="pencil"></mat-icon>
+    </button>
+    <button mat-icon-button (click)="toggleRevealed(this.building.id)">
+      <mat-icon svgIcon="caret-down" *ngIf="(idRevealed$ | async) != building.id"></mat-icon>
+      <mat-icon svgIcon="caret-up" *ngIf="(idRevealed$ | async) == building.id"></mat-icon>
+    </button>
+  </div>
+  <div class="progress-bar">
+    <mat-progress-bar mode="determinate" value="{{building.buildingProgress}}"></mat-progress-bar>
+  </div>
+  <div class="subsection-list" *ngIf="(idRevealed$ | async) == building.id">
+    <div class="subsection-list-item"
+         *ngFor="let buildingBlock of building.buildingBlocks"
+         (mouseover)="isMouseOverSubsectionListItem=true"
+         (mouseleave)="isMouseOverSubsectionListItem=false">
+      <mat-checkbox (change)="editBuildingBlock($event.checked, buildingBlock)" [checked]="buildingBlock.isDone">{{buildingBlock.buildingBlockName}}</mat-checkbox>
+      <button mat-icon-button [class.hidden]="!isMouseOverSubsectionListItem" (click)="deleteSubsection(buildingBlock.id)">
+        <mat-icon svgIcon="cross"></mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

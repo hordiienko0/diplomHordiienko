@@ -1,0 +1,21 @@
+<div [ngClass]="menuClicked ? 'clicked' : ''" class="container" *ngIf="projectDocument">
+  <div class="img">
+    <img onerror="this.style.display='none'" alt=""
+         src='{{ "../../../../../assets/images/" + this.getFileExtension(projectDocument.link) + "File.png" }}'/>
+  </div>
+  <div class="information">
+    <h4 class="information_header">{{projectDocument.buildingName}}</h4>
+    <p>{{projectDocument.fileName}}</p>
+    <p class="date">{{projectDocument.created|date:'dd.MM.yyyy'}}</p>
+  </div>
+  <div class="more">
+    <mat-menu (closed)="menuClick()" #menu="matMenu">
+      <button mat-menu-item (click)="onRename(projectDocument.fileName, projectDocument.id); menuTrigger.closeMenu()">Rename</button>
+      <button mat-menu-item (click)="onDelete(projectDocument.id); menuTrigger.closeMenu()">Delete</button>
+      <button mat-menu-item (click)="onView(); menuTrigger.closeMenu()">View</button>
+    </mat-menu>
+    <button (click)="menuClick()" class="button" mat-icon-button #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </div>
+</div>

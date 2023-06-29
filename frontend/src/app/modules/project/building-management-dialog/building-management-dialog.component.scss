@@ -1,0 +1,296 @@
+@use '../../../shared/colors' as colors;
+
+.dialog-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.dialog-header > h3 {
+  margin-bottom: 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.add-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+
+  .add-btn {
+    color: colors.$gray7;
+    background-color: transparent;
+    padding: 8px 20px;
+    border: 2px solid colors.$gray3;
+    border-radius: 0;
+    text-align: center;
+    line-height: 20px;
+
+    &:hover {
+      color: colors.$gray10;
+      border: 2px solid colors.$gray4;
+    }
+
+    mat-icon {
+      margin-right: 8px;
+    }
+  }
+
+  .add-service-btn:hover {
+    background-color: colors.$green3;
+    border-color: colors.$green3;
+  }
+
+  .add-material-btn:hover {
+    background-color: colors.$primary3;
+    border-color: colors.$primary3;
+  }
+
+  .add-document-btn:hover {
+    background-color: colors.$orange3;
+    border-color: colors.$orange3;
+  }
+}
+
+.section {
+
+  .heading {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+
+    .name {
+      color: colors.$gray7;
+    }
+
+    .see-all {
+      display: flex;
+      gap: 5px;
+      color: colors.$gray7;
+      cursor: pointer;
+    }
+
+  }
+
+  .remove-btn {
+    display: flex;
+    align-items: center;
+    text-align: right;
+    justify-content: flex-end;
+    margin-left: auto;
+  }
+
+}
+
+.services-row {
+  padding: 12px;
+  min-width: 500px;
+  color: colors.$gray9;
+  background: colors.$green2;
+
+  > * {
+    display: flex;
+    align-items: center;
+  }
+
+  + .services-row {
+    margin-top: 8px;
+  }
+
+  .service-type {
+    background: colors.$green3;
+    width: fit-content;
+    padding: 4px 8px;
+  }
+
+  .service-name {
+    font-weight: 600;
+    margin-left: 16px;
+  }
+
+  .service-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 8px;
+
+    > * {
+      display: inline-flex;
+    }
+
+  }
+
+  &:hover .remove-btn .hover-icon {
+    visibility: visible;
+    width: fit-content;
+    margin-left: 5px;
+  }
+
+}
+
+.materials-row {
+  padding: 12px;
+  min-width: 500px;
+  color: colors.$gray9;
+  background: colors.$primary2;
+
+  > * {
+    display: flex;
+    align-items: center;
+  }
+
+  + .materials-row {
+    margin-top: 8px;
+  }
+
+  .material-type {
+    background: #9CC3FF;
+    width: fit-content;
+    padding: 4px 8px;
+  }
+
+  .material-name {
+    font-weight: 600;
+    margin-left: 16px;
+  }
+
+  .material-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 8px;
+
+    > * {
+      display: inline-flex;
+    }
+
+    .material-address {
+      margin: 0 auto;
+      color: colors.$gray6;
+    }
+
+  }
+
+  &:hover .remove-btn .hover-icon {
+    visibility: visible;
+    width: fit-content;
+    margin-left: 5px;
+  }
+
+}
+
+.documents-row {
+  padding: 12px;
+  min-width: 500px;
+  color: colors.$gray9;
+  background: colors.$orange2;
+  display: flex;
+
+  > * > * {
+    display: flex;
+    align-items: center;
+  }
+
+  + .documents-row {
+    margin-top: 8px;
+  }
+
+  .document-icon {
+    height: 60px;
+    width: 48px;
+    margin-right: 16px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .document-name {
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .document-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 8px;
+
+    > * {
+      display: inline-flex;
+    }
+
+    .material-address {
+      margin: 0 auto;
+      color: colors.$gray6;
+    }
+
+  }
+
+  &:hover .remove-btn .hover-icon {
+    visibility: visible;
+    width: fit-content;
+    margin-left: 5px;
+  }
+
+}
+
+.hover-icon {
+  visibility: hidden;
+  width: 0;
+  cursor: pointer;
+  margin-left: 0;
+}
+
+.progress-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px
+}
+
+.add-subsection {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  padding: 10px 12px;
+  color: colors.$primary4;
+  align-items: center;
+}
+
+.add-subsection:hover {
+  cursor: pointer;
+}
+
+.subsection-list-item {
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.subsection-list-item > mat-checkbox {
+  margin-right: auto;
+  color: colors.$gray7;
+}
+
+:host::ng-deep {
+  .mat-progress-bar-fill::after {
+    background: colors.$orange3;
+  }
+
+  .mat-progress-bar {
+    height: 8px;
+  }
+
+  .mat-progress-bar-buffer {
+    background: colors.$white;
+  }
+
+  .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: colors.$primary4;
+  }
+}

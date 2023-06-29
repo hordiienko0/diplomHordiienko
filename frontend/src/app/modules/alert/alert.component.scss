@@ -1,0 +1,74 @@
+.alert-container {
+
+}
+
+.alert-status {
+
+    
+}
+
+.alert-message {
+
+}
+
+.alert-button {
+    background-color: transparent;
+    color: inherit
+}
+
+.alert-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.error.alert-status {
+    color: rgb(255, 0, 0);
+}
+
+.error.alert-message {
+
+}
+
+.error.alert-button {
+
+}
+
+
+.success.alert-status {
+    color: rgb(16, 196, 16);
+}
+
+.success.alert-message {
+
+}
+
+.success.alert-button {
+
+}
+
+
+.info.alert-status {
+    color: rgb(21, 122, 168);
+}
+
+.info.alert-message {
+
+}
+
+.info.alert-button {
+
+}
+
+
+.warning.alert-status {
+    color: rgb(204, 221, 47);
+}
+
+.warning.alert-message {
+
+}
+
+.warning.alert-button {
+
+}

@@ -1,0 +1,23 @@
+@use '../../../shared/colors' as colors;
+
+.container {
+  background: colors.$orange1;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px 8px 4px 16px;
+}
+
+.card-header > span {
+  margin-right: auto;
+}
+
+.buildings-list {
+  margin: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}

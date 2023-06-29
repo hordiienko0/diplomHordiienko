@@ -1,0 +1,16 @@
+<app-modal-dialog-savecancel title="Crop A Image">
+  <div class="container">
+    <image-cropper
+      class="image-cropper"
+      [aspectRatio]="5 / 4"
+      [imageURL]="link"
+      (imageLoaded)="imageLoaded($event)"
+      (imageCropped)="imageCropped($event)"
+    ></image-cropper>
+
+    <div class="buttons">
+      <app-mini-button (click)="this.submit()">Submit</app-mini-button>
+      <app-mini-button (click)="this.cancel()">Cancel</app-mini-button>
+    </div>
+  </div>
+</app-modal-dialog-savecancel>

@@ -1,0 +1,79 @@
+table {
+  width: 90%;
+  margin-left: 5%;
+  background: transparent;
+}
+th{
+  background: transparent;
+}
+th.mat-header-cell, td.mat-cell{
+  border-bottom-width: 0;
+}
+td.mat-cell{
+  background: #ECFBF1;
+}
+table.mat-table {
+  border-spacing: 0px 8px;
+}
+th.mat-header-cell {
+  text-align: left;
+  padding-bottom: 0;
+  vertical-align: bottom;
+}
+.button-edit{
+  visibility: hidden;
+}
+.button-copy{
+  visibility: hidden;
+}
+tr.mat-row:hover {
+  .button-edit {
+    visibility: visible;
+  }
+}
+td.mat-cell:hover {
+  .button-edit {
+    visibility: visible;
+  }
+  .button-copy{
+    visibility: visible;
+  }
+}
+.w-100{
+  width: 100px;
+}
+.th-right{
+  text-align: right;
+}
+.table{
+  width: 90%;
+  margin-left: 5%;
+  display: flex;
+  flex-direction: column;
+}
+.type-box{
+  background: #B6F4D3;
+  padding: 5px;
+  width: fit-content;
+
+}
+.type-wrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 5px 0;
+}
+.add-button{
+  margin-left: auto;
+  margin-right: 5%;
+}
+.add-search-wrapper{
+  display: flex;
+  flex-direction: row;
+}
+td.mat-cell{
+  padding: 5px;
+}
+.add-search-wrapper>app-filter-input{
+  margin-left: 5%;
+}

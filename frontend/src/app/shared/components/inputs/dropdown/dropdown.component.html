@@ -1,0 +1,7 @@
+<mat-form-field appearance="fill">
+  <mat-select #select [formControl]="control" [placeholder]="placeholder" [required]="required" panelClass="select-panel">
+    <mat-option *ngFor="let option of (options | async)" [value]="option.value">
+      {{option.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

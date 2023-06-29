@@ -1,0 +1,49 @@
+@use '../../../../colors.scss' as colors;
+
+.datepicker-header {
+  margin: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.datepicker--header-month {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.datepicker-header-month-label {
+  height: 1em;
+  font-weight: 500;
+  text-align: center;
+  color: colors.$gray8;
+}
+
+.datepicker-header-year {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px 8px;
+  gap: 4px;
+
+  margin-left: auto;
+
+  background: #E7F1FF;
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  border: none;
+
+  font-family: 'Poppins';
+}

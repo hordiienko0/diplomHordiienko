@@ -1,0 +1,50 @@
+@use '../../../../shared/colors.scss' as colors;
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  background-color: colors.$gray2;
+  padding: 12px;
+  align-items: center;
+  height: 96px;
+  gap: 12px;
+  width: 26vw;
+  .img {
+    background-color: white;
+    width: 87px;
+    height: 108px;
+
+    img {
+      width: inherit;
+      height: inherit;
+    }
+  }
+  .information {
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    justify-content: space-between;
+    flex: 1;
+    * {
+      margin: 0;
+      padding: 0;
+      cursor: default;
+    }
+    .information_header {
+      font-weight: bold;
+    }
+  }
+  .more {
+    height: inherit;
+  }
+  .date {
+    color: colors.$gray6;
+  }
+}
+:hover {
+  background-color: colors.$primary2;
+}
+.clicked{
+ background-color: colors.$primary2;;
+}

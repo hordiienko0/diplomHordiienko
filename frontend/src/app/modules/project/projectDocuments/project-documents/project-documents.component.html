@@ -1,0 +1,10 @@
+<div class="container" *ngIf="projectDocuments$ | async as projectDocuments">
+  <ng-container *ngFor="let projectDocument of projectDocuments"
+   >
+  <app-project-document-overview [projectDocument]="projectDocument"
+  class="document-overview"
+  
+></app-project-document-overview>
+  </ng-container>
+  
+</div>

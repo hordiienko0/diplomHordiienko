@@ -1,0 +1,26 @@
+
+<div class="container" *ngIf="materials$ | async as materials">
+  <table class="table">
+    <tr class="table-header">
+      <th>Building</th>
+      <th>Company</th>
+      <th>Storage address</th>
+      <th>Amount</th>
+      <th>Type</th>
+      <th>Measurement</th>
+      <th>Price per unit</th>
+      <th>Total</th>
+    </tr>
+  <tr *ngFor="let material of materials" class="table-element"> 
+    <td>{{material.buildingName}}</td>
+    <td>{{material.companyName}}</td>
+    <td>{{material.companyAddress}}</td>
+    <td>{{material.amount}}</td>
+    <td>{{material.materialTypeName}}</td>
+    <td>{{material.measurementName}}</td>
+    <td>{{material.price}}$</td>
+    <td>{{material.price * material.amount}}$</td>
+  </tr>
+  </table>
+</div>
+

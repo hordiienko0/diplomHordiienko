@@ -1,0 +1,47 @@
+
+<div class="container">
+  <div class="projects-page">
+    <div class="head">
+      <div class="controll">
+        <mat-tab-group (selectedTabChange)="changeStatus($event)">
+          <mat-tab label="Поточні проекти"></mat-tab>
+          <mat-tab label="Не розпочатоі"></mat-tab>
+          <mat-tab label="Завершено"></mat-tab>
+          <mat-tab label="Призупинено"></mat-tab>
+        </mat-tab-group>
+        <div class="flex">
+          <div mat-icon-button class="sortMenu" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <div class="sort-svg">
+              <mat-icon svgIcon="sort"></mat-icon>
+            </div>
+          </div>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="sortProjectsByName()">
+              <span>По назві</span>
+            </button>
+            <button mat-menu-item (click)="sortProjectsByStartTimeDesc()">
+              <span>Нові</span>
+            </button>
+            <button mat-menu-item (click)="sortProjectsByStartTime()">
+              <span>Старі</span>
+            </button>
+          </mat-menu>
+          <app-filter-input (onSearchQuery)="onSearchQuery($event)"></app-filter-input>
+        </div>
+      </div>
+      </div>
+      <div class="create-project">
+        <!-- create project button -->
+        <app-button (click)="add()">Додати проект</app-button>
+        <!--<app-datepicker  class="endDate"  label="End time"></app-datepicker>-->
+      </div>
+    <div class="projects" *ngIf="projects$ | async as projects">
+      <app-card
+        *ngFor="let project of projects"
+        [cardInformation]="getCardInformation(project)"
+        (click)="redirectToProjectPage(project.id)"
+      >
+      </app-card>
+    </div>
+  </div>
+</div>

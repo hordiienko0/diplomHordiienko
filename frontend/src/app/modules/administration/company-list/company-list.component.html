@@ -1,0 +1,25 @@
+<header class="header">
+  <div class="header-btn-group">
+    <a [matMenuTriggerFor]="menu">
+      <mat-icon svgIcon="sort"></mat-icon>
+    </a>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="toggleSort('companyName')">Назва</button>
+      <button mat-menu-item (click)="toggleSort('joinDate')">Дата створення</button>
+    </mat-menu>
+    <app-filter-input
+      (onSearchQuery)="onSearchQuery($event)"
+    ></app-filter-input>
+  </div>
+  <app-button class="add-company" (click)="openModal()">Додати компанію</app-button>
+</header>
+<div class="company-list">
+  <ng-container *ngIf="companies$ | async as companies">
+    <app-card
+      *ngFor="let company of companies"
+      [cardId]="company.id"
+      [cardInformation]="getCardInformation(company)"
+      [routerLink]="['/company-information', company.id]"
+    ></app-card>
+  </ng-container>
+</div>

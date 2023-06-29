@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="gantt-wrapper">
+    <div class="gantt-controls">
+      <div class="add-btn" (click)="onAddClick()">
+        <mat-icon svgIcon="plus"></mat-icon>
+        Додати розділ
+      </div>
+      <button mat-button [matMenuTriggerFor]="menu">{{menuSelected}}</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="onMenuChanged('Month')">Month</button>
+        <button mat-menu-item (click)="onMenuChanged('Quarter')">Quarter</button>
+        <button mat-menu-item (click)="onMenuChanged('Week')">Week</button>
+      </mat-menu>
+    </div>
+    <app-gantt-chart *ngIf="phases$ | async as phases"
+                     [phases]="phases"
+                     [mode]="menuSelected"
+                     [project]="currentProject$|async"
+                     (editRequested)="onEditRequested($event)"></app-gantt-chart>
+  </div>
+</div>

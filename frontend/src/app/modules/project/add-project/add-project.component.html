@@ -1,0 +1,28 @@
+<app-modal-dialog-confirmation title="Додати проект">
+  <form [formGroup]="form" (submit)="submit()">
+
+    <div class="blockDialog projectIdContainer">
+      <app-block-with-id [id]="projectId" name="Номер проекту"></app-block-with-id>
+    </div>
+    <div class="blockDialog">
+      <app-input type="text" [control]="name" label="Назва проекту" errorMessage="Обов'язкова назва проекту">
+      </app-input>
+    </div>
+    <div class="blockDialog">
+      <app-input type="text" [control]="address" label="Адреса" errorMessage="Адреса обов'язкова"></app-input>
+    </div>
+
+    <div class="blockDialog dateContainer">
+      <app-datepicker [control]="startDate" label="Час початку"></app-datepicker>
+      <app-datepicker [control]="endDate" label="Час закінчення"></app-datepicker>
+    </div>
+    <div class="blockDialog alert-danger"
+      *ngIf="form.errors?.['identityRevealed'] && (form.touched || form.dirty)">
+      Дата діапазону є недійсною
+      </div>
+
+    <div class="modal-footer">
+      <app-large-button type="submit">Додати</app-large-button>
+    </div>
+  </form>
+</app-modal-dialog-confirmation>

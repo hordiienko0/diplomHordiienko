@@ -1,0 +1,87 @@
+@use '../../../shared/colors' as colors;
+
+.controls, .step-controls {
+  display: flex;
+  flex-direction: column;
+  gap:24px;
+}
+
+.step-controls, .buildings {
+  background: colors.$orange1;
+  padding: 20px;
+  border: 1px solid colors.$orange2;
+}
+
+.save-btn {
+  color: colors.$primary4;
+  align-self: flex-end;
+  padding: 5px;
+}
+
+.save-btn:hover {
+  cursor: pointer;
+}
+
+.controls > app-input, .step-controls > app-input {
+  width: 100%;
+}
+
+.date-controls, .add-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
+
+.add-buttons {
+  justify-content: center;
+}
+
+.add-button {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  padding: 10px 48px;
+  border: 1px solid colors.$orange3;
+}
+
+.add-button:hover {
+  cursor: pointer;
+  background: colors.$orange2;
+}
+
+.add-button:active {
+  background: colors.$orange3;
+}
+
+:host::ng-deep {
+  .mat-form-field {
+    width: 100%;
+  }
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap:15px;
+  padding: 10px;
+}
+
+.step > mat-icon{
+  margin-left: auto;
+}
+
+.buildings {
+  display: flex;
+  flex-direction: column;
+  gap:20px;
+}
+
+.building, .step {
+  display: flex;
+  flex-direction: row;
+  gap:10px;
+}
+
+app-underlined-button {
+  align-self: center;
+}

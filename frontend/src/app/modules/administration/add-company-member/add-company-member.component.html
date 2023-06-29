@@ -1,0 +1,22 @@
+<app-modal-dialog-confirmation title="Додати нового учасника компанії">
+  <form [formGroup]="form" (submit)="onSubmit()" class="wrapper">
+
+    <app-dropdown class="wide" label="Роль" placeholder="Select a role"
+                  [control]="roleName" [options]="roles$" [required]="true">
+    </app-dropdown>
+
+    <div> <!-- div for inlining -->
+      <app-input style="margin-right: 10px" label="Ім'я " type="text"
+                 [control]="firstName" [errorMessage]="firstNameError()">
+      </app-input>
+
+      <app-input style="margin-left: 10px" label="Фамілія" type="text"
+                 [control]="lastName" [errorMessage]="lastNameError()">
+      </app-input>
+    </div>
+    <app-input class="wide" label="Email" type="email" [control]="userEmail" [errorMessage]="userEmailError()">
+    </app-input>
+
+    <app-large-button type="submit">Створити користувача</app-large-button>
+  </form>
+</app-modal-dialog-confirmation>

@@ -1,0 +1,24 @@
+@use "../../../colors.scss" as colors;
+
+:host ::ng-deep .btn {
+  padding: 8px 10px;
+  height: 40px;
+
+  background-color: transparent;
+  color: colors.$primary4;
+
+  &:hover {
+    background-color: rgba(colors.$primary6, 0.1);
+    color: colors.$primary4;
+  }
+
+  &:active {
+    background-color: rgba(colors.$primary6, 0.2);
+    color: colors.$primary6;
+  }
+
+  &:disabled {
+    background-color: transparent;
+    color: colors.$gray4;
+  }
+}

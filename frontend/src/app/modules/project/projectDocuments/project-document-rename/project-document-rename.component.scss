@@ -1,0 +1,19 @@
+@use '../../../../shared/colors.scss' as colors;
+
+.buttons{
+  margin-top: 24px;
+  display: flex;
+  justify-content: end;
+  .secondary-btn, .primary-btn  {
+    padding: 8px 10px;
+  }
+  
+  .primary-btn {
+    color: colors.$primary4;
+  }
+  
+  .secondary-btn:hover, .primary-btn:hover {
+    cursor: pointer;
+    text-underline-offset: 0.4em;
+  }
+}

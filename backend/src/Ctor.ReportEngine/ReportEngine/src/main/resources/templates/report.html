@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <style>
+        *{
+            font-family: sans-serif;
+        }
+        .header{
+            width: inherit;
+        }
+        .header > h2{
+            margin: 0 0 10px;
+        }
+        .header > img{
+            height: 80px;
+        }
+        .body > h4{
+            color: #628ecc;
+        }
+        .report-table {
+            width: 100%;
+            font-size: 75%;
+        }
+        .report-table, .report-table th, .report-table td {
+            border: 1px solid #628ecc;
+            border-collapse: collapse;
+        }
+        .report-table th {
+            background-color: #628ecc;
+            color: white;
+        }
+
+    </style>
+    <title>Report</title>
+</head>
+<body>
+<div class="snippet-container">
+    <div class="header space-between" >
+        <img th:src="${companyImage}"/>
+        <h2 th:text="${company.CompanyName}"></h2>
+    </div>
+    <div class="body">
+        <table class="report-table">
+            <tr>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Price</th>
+                <th>Company address</th>
+                <th>Company name</th>
+                <th>Date</th>
+            </tr>
+            <tr th:each="material, iterStat: ${materials}">
+                <td th:text="${material.MaterialType.Name}"></td>
+                <td th:text="${material.Amount + ' ' + material.Measurement.Name}"></td>
+                <td th:text="${material.Price}"></td>
+                <td th:text="${material.CompanyAddress}"></td>
+                <td th:text="${material.CompanyName}"></td>
+                <td th:text="${#dates.format(material.Date, 'dd.MM.yyyy')}"></td>
+            </tr>
+        </table>
+        <h4 th:text="${'Total price: '+totalSum}"></h4>
+    </div>
+</div>
+
+</body>
+</html>

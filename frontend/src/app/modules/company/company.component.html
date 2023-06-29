@@ -1,0 +1,98 @@
+<div class="wrapper">
+  <h3>Company Profile</h3>
+  <div class="columns">
+    <div class="company-info" *ngIf="company$ | async as company">
+      <div class="logo-container">
+        <img [src]="getImage(company.image)">
+        <div class="logo-controls">
+          <button *ngIf="!isLogoEmpty(company.image)" mat-icon-button
+                  (click)="this.editLogo(getImage(company.image), company.id)">
+            <mat-icon svgIcon="pencil"></mat-icon>
+          </button>
+          <input
+            class="logo-input"
+            type="file"
+            accept="image/png, image/jpeg, image/svg+xml"
+            (change)="uploadLogo($event, company.id)"
+            #selectLogo
+          />
+          <a *ngIf="!isLogoEmpty(company.image)" class="main-text logo-btn" (click)="this.deleteLogo()">Delete A
+            Logo</a>
+          <a *ngIf="isLogoEmpty(company.image)" class="main-text logo-btn" (click)="selectLogo.click()">Upload A
+            Logo</a>
+        </div>
+      </div>
+      <div class="info-card">
+        <ng-container *ngIf="companyProfileForm$ | async as companyForm">
+          <div class="card-header">
+            <span class="selected-text1">Shopping Centre Valkea Info</span>
+            <button mat-icon-button *ngIf="companyForm.isDisabled" (click)="enableEditing()">
+              <mat-icon svgIcon="pencil"></mat-icon>
+            </button>
+            <div class="secondary-btn" *ngIf="!companyForm.isDisabled" (click)="disableEditing()">Cancel</div>
+            <div class="primary-btn" *ngIf="!companyForm.isDisabled"
+                 (click)="onSubmit(companyForm.value.address, companyForm.value.email, companyForm.value.website)">Save
+            </div>
+          </div>
+          <form novalidate class="info-card-content" [ngrxFormState]="companyForm">
+            <div class="info-card-field">
+              <div class="info-card-label">
+                Join date:
+              </div>
+              <div class="info-card-input">
+                {{company.joinDate}}
+              </div>
+            </div>
+            <div class="info-card-field">
+              <div class="info-card-label">
+                Address:
+              </div>
+              <div class="info-card-input" *ngIf="companyForm.isDisabled">
+                {{company.address}}
+              </div>
+              <app-input class="info-card-input" *ngIf="!companyForm.isDisabled"
+                         [controlState]="companyForm.controls.address">
+              </app-input>
+            </div>
+            <div class="info-card-field">
+              <div class="info-card-label">
+                Email:
+              </div>
+              <div class="info-card-input" *ngIf="companyForm.isDisabled">
+                {{company.email}}
+              </div>
+              <app-input class="info-card-input" *ngIf="!companyForm.isDisabled"
+                         [controlState]="companyForm.controls.email">
+              </app-input>
+            </div>
+            <div class="info-card-field">
+              <div class="info-card-label">
+                Website:
+              </div>
+              <div class="info-card-input" *ngIf="companyForm.isDisabled">
+                {{company.website}}
+              </div>
+              <app-input class="info-card-input" *ngIf="!companyForm.isDisabled"
+                         [controlState]="companyForm.controls.website">
+              </app-input>
+            </div>
+          </form>
+        </ng-container>
+      </div>
+    </div>
+    <div class="projects-card">
+      <div class="card-header">
+        <span class="selected-text1">Проекти</span>
+      </div>
+      <div class="project-info" *ngFor="let project of projects$ | async">
+        <img [src]="getFullImageUrl(project.imageUrl)">
+        <div class="project-info-container">
+          <h3>{{project.projectName}}</h3>
+          <div class="project-info-container-subheader">{{project.address}}</div>
+          <div class="project-info-container-description">{{project.description}}</div>
+        </div>
+        <div class="project-info-container-status">{{project.status}}</div>
+      </div>
+    </div>
+  </div>
+</div>

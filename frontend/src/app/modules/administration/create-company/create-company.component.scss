@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
+:host ::ng-deep {
+
+  mat-form-field {
+    width: 100%
+  }
+
+  form > * {
+    display: block;
+  }
+
+  form > * + * {
+    margin-top: 20px;
+  }
+
+}
+
+.image-column {
+  float: left;
+  width: 50%;
+  height: 100vh;
+  background-image: url('../../../../assets/images/iltun-huseynli-OH7GkUqiuZk-unsplash.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.content-column {
+  float: right;
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  background: #F3F4F8;
+
+  .content-padding {
+    padding: 80px 118px;
+    overflow: scroll;
+  }
+
+}
+
+.btn-back {
+  width: 90px;
+  height: 44px;
+  top: -40px;
+  color: #515364;
+}
+
+@media screen and (max-width: 1024px) {
+  .image-column {
+    visibility: hidden;
+    display: none;
+    width: 0;
+  }
+
+  .content-column {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .content-column {
+
+    .content-padding {
+      min-width: initial;
+      width: 80vw;
+    }
+
+  }
+}
+
+.heading {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  text-align: left;
+  line-height: 48px;
+  margin-top: 28px;
+  margin-bottom: 60px;
+  color: #181A25;
+}
+
+#CompanyIdDiv {
+  width: 100%;
+  display: flex;
+  background: #E3E5ED;
+  height: 56px;
+  vertical-align: central;
+  justify-content: space-between;
+
+  div {
+    height: 100%;
+    margin-top: 16px;
+    margin-left: 12px;
+    margin-right: 12px;
+    vertical-align: central;
+  }
+}

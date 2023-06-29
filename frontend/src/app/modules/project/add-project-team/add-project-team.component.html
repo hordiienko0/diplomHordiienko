@@ -1,0 +1,66 @@
+<app-modal-dialog-confirmation title="Додати команду проекту">
+  <form class="container" style="width: 490px">
+
+    <button mat-flat-button class="add-members-btn" type="button"
+            (click)="isOverlayOpen = !isOverlayOpen" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+      <mat-icon svgIcon="plus"></mat-icon>
+      <span>Додати членів команди</span>
+    </button>
+
+    <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="isOverlayOpen">
+      <form class="add-members-overlay">
+        <app-input (input)="search($event)"></app-input>
+
+        <div class="search-results">
+          <div *ngFor="let user of (searchCompanyUsers$ | async)?.users" class="search-result">
+            <mat-checkbox (change)="selectionChange($event, user)">
+              <span class="name">{{user.firstName}} {{user.lastName}}</span><br>
+              <span class="role">{{user.role}}</span>
+            </mat-checkbox>
+          </div>
+        </div>
+
+        <div class="selected-container">
+          <div *ngFor="let user of selectedUsers" class="selected-item">
+            <div>
+              <span class="name">{{user.firstName}} {{user.lastName}}</span><br>
+              <span class="role">{{user.role}}</span>
+            </div>
+            <!-- <mat-icon class="close" svgIcon="delete" (click)="unselectUser(user)"></mat-icon> -->
+          </div>
+        </div>
+
+        <div class="confirmation-buttons">
+          <app-mini-button class="cancel-btn" (click)="cancelSelected()">Скасувати</app-mini-button>
+          <app-mini-button (click)="submitSelected()">Підтвердити</app-mini-button>
+        </div>
+
+      </form>
+    </ng-template>
+
+    <div>
+      <div class="member-row" *ngFor="let member of teamMembersToSubmit">
+        <div>
+          <span class="member-role">{{member.role}}</span>
+          <span class="member-name">{{member.name}}</span>
+          <div class="member-email" [cdkCopyToClipboard]="member.email">
+            <span>{{member.email}}</span>
+            <mat-icon class="hover-icon" svgIcon="copy"></mat-icon>
+          </div>
+        </div>
+        <div>
+          <span class="close-btn">
+            <mat-icon class="hover-icon" svgIcon="cross" (click)="removeUser(member.id)"></mat-icon>
+          </span>
+          <span class="member-phone" [cdkCopyToClipboard]="member.phoneNumber">
+            <span>{{member.phoneNumber}}</span>
+            <mat-icon class="hover-icon" svgIcon="copy"></mat-icon>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <app-large-button type="submit" (click)="submit()">Підтвердити</app-large-button>
+
+  </form>
+</app-modal-dialog-confirmation>

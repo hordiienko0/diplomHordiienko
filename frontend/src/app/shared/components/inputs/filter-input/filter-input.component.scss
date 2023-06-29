@@ -1,0 +1,87 @@
+@use '../../../colors' as colors;
+
+.invisible {
+  visibility: hidden;
+  margin: 1px;
+}
+
+.visible {
+  border: 1px solid colors.$primary4;
+}
+
+.filter-field {
+  padding: 5px;
+}
+
+
+
+:host ::ng-deep {
+
+  .mat-form-field {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .mat-form-field-wrapper {
+    padding: 0;
+    align-items: center;
+    display: flex;
+  }
+
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+    padding: 8px 12px;
+    height: 56px;
+    background-color: colors.$white;
+    border: 1px solid transparent;
+    border-radius: 0;
+
+
+
+    &:hover {
+      border-color: colors.$gray3;
+    }
+
+    &:invalid {
+      color: colors.$gray10;
+    }
+
+    &:active {
+      color: colors.$gray10;
+    }
+  }
+
+  .mat-form-field-underline {
+    display: none;
+  }
+
+  .mat-form-field-label {
+    color: colors.$gray6;
+  }
+
+  .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+    color: colors.$red4;
+  }
+
+  .mat-focused .mat-form-field-label {
+    color: colors.$gray6;
+  }
+
+  .mat-form-field-invalid .mat-form-field-flex {
+    background-color: colors.$red1;
+  }
+
+  .mat-placeholder-required.mat-form-field-required-marker {
+    display: none
+  }
+  .mat-form-field-infix {
+    border: 0;
+    padding: 0 2px;
+  }
+
+  .mat-form-field-flex {
+    align-items: center
+  }
+}

@@ -1,0 +1,23 @@
+<div class="notif-container">
+  <div *ngIf="notifications$ | async as notifs;" >
+
+    <div class="delete-all-button" (click)="deleteAllNotifi()" *ngIf="(notifCount$ | async) != 0">Delete all</div>
+    <div *ngIf="(notifCount$ | async) == 0" class="empty-info">Ви не маєте нових сповіщень</div>
+    <div *ngFor="let notifi of notifs">
+      <div    [ngClass]="{'error-card': notifi.type === 'error',
+                                          'success-card' : notifi.type === 'success',
+                                          'info-card' : notifi.type === 'info',
+                                          'warning-card' : notifi.type === 'warning',
+                                           'card-notif' : true}">
+        <div class="delete-button" (click)="deleteNotifi(notifi.id)">
+          <mat-icon>delete_outline</mat-icon> 
+        </div>
+        <div class="card-type">Type: {{notifi.type}}</div> 
+        <div class="card-message">{{notifi.message}}</div>
+      </div>
+    </div>
+    <div class="separator"></div>
+
+  </div>
+</div>
+

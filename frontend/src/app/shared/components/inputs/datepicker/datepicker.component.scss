@@ -1,0 +1,66 @@
+@use '../../../colors.scss' as colors;
+
+.mat-form-field-wrapper {
+  padding: 0;
+  align-items: center;
+  display: flex;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  padding: 8px 12px;
+  height: 56px;
+  background-color: colors.$white;
+  border: 1px solid transparent;
+  border-radius: 0;
+
+  &:hover {
+    border-color: colors.$gray3;
+  }
+
+  &:invalid {
+    color: colors.$gray10;
+  }
+
+  &:active {
+    color: colors.$gray10;
+  }
+}
+
+
+.mat-form-field-underline {
+  display: none;
+}
+
+button.example-custom-date-class > div {
+  font-family: 'Poppins';
+  border-radius: 0;
+}
+
+button.example-custom-date-class.mat-calendar-body-active > div {
+  background-color: inherit;
+}
+
+button.example-custom-date-class > div.mat-calendar-body-selected {
+  background-color: colors.$orange3;
+}
+
+button.example-custom-date-class:not(.mat-calendar-body-disabled):hover > div.mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+  background-color: colors.$orange1;
+  border-radius: 0;
+}
+
+button.example-custom-date-class:not(.mat-calendar-body-disabled) > div.mat-calendar-body-today:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+  background-color: inherit;
+  border-radius: 0;
+  border: none;
+}
+
+.mat-form-field-flex {
+  display: inline-flex;
+  align-items: flex-start;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+
+

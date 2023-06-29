@@ -1,0 +1,54 @@
+@use '../../../shared/colors' as colors;
+
+.container{
+  margin: 36px;
+  display: flex;
+  flex-direction: column;
+}
+
+.arrow-bar {
+  position: relative;
+  width: 95%;
+  height: 40px;
+  background: colors.$orange2;
+}
+
+.arrow-bar:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 25px solid colors.$orange2;
+  right: -25px;
+}
+
+app-gantt-chart {
+  width: 100%;
+  height: 100%;
+}
+
+.gantt-controls {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  margin-top: 20px;
+}
+
+.gantt-controls > button {
+  margin-left: auto;
+}
+
+.add-btn {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  padding: 8px;
+  align-items: center;
+  color: colors.$primary4;
+}
+
+.add-btn:hover {
+  cursor: pointer;
+}

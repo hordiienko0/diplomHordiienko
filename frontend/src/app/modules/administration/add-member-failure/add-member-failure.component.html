@@ -1,0 +1,7 @@
+<app-modal-dialog-confirmation title="Failed to add members">
+  <div mat-dialog-content>
+    <p *ngFor="let line of (failures$|async)">
+      {{line}}
+    </p>
+  </div>
+</app-modal-dialog-confirmation>

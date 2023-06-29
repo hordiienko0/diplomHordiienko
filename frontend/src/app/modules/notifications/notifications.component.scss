@@ -1,0 +1,76 @@
+.notif-container{
+    width: 90%;
+    margin-left: 5%;
+    height: 90%;
+    margin-top: 5%;
+    padding-bottom: 50px;
+}
+
+.delete-all-button {
+  margin: 10px;
+  width: 8%;
+  padding: 10px 40px;
+  text-align: center;
+  font-size: 20px;
+  color: #505050;
+  background-color: #E3E3E3;
+}
+
+.delete-all-button:hover {
+  cursor: pointer;
+  background: #CECECE;
+}
+
+.card-notif {
+  min-width: 90%;
+  max-width: 90%;
+  position: relative;
+  height: auto;
+  margin: 5px;
+  padding: 5px;
+}
+
+.delete-button{
+    position: absolute;
+    right: 5px;
+}
+
+.delete-button:hover{
+    cursor: pointer;
+}
+
+.card-type {
+  margin: 5px;
+  margin-top: 5px;
+}
+
+.card-message {
+  margin: 5px;
+  color: #6C6960;
+  font-size: 16px;
+}
+
+.error-card {
+  background-color: #C27E88;
+}
+
+.info-card {
+  background-color: #DAD0D3;
+}
+
+.success-card {
+  background-color: #93C8A4;
+}
+
+.warning-card {
+  background-color: #F4E5A4;
+}
+
+.empty-info {
+  font-size: 26px;
+  color: #A1A1A1;
+}
+
+.separator {
+    height: 50px;
+}

@@ -1,0 +1,150 @@
+@use '../../../../shared/colors.scss' as colors;
+
+:host {
+  padding: 22px;
+  min-width: 441px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #F3F4F8;
+  box-shadow: 0 12px 12px rgba(119, 121, 134, 0.3);
+}
+
+app-underlined-button ::ng-deep * {
+  font-size: 16px !important;;
+  line-height: 24px !important;;
+  color: colors.$primary4 !important;
+  cursor: pointer;
+}
+
+::ng-deep .mat-form-field {
+  width: 100%;
+}
+
+.confirmation-buttons {
+  display: flex;
+  justify-content: flex-end;
+
+  .cancel-btn ::ng-deep button {
+  }
+}
+
+.selected-container {
+  margin-top: 12px;
+  gap: 12px;
+  display: flex;
+  flex-wrap: wrap;
+
+  .selected-item {
+    width: fit-content;
+    padding: 4px 11px 4px 8px;
+    display: flex;
+    background: #D7E7FF;
+
+    .material-type {
+      font-weight: 600;
+    }
+
+    .measurement {
+      font-weight: 400;
+    }
+
+    .close {
+      margin: auto 0 auto 7px;
+      height: 22px;
+      width: 22px;
+    }
+
+    .close:hover{
+      cursor: pointer;
+    }
+
+  }
+
+}
+
+.search-results {
+  min-height: 100px;
+  max-height: 270px;
+  margin-top: 4px;
+  background: white;
+  overflow: scroll;
+
+  .search-result {
+    margin: 16px 0;
+
+    ::ng-deep {
+
+      .mat-checkbox-inner-container {
+        margin: auto 15px;
+      }
+
+      .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+        background-color: #2856D8 !important;
+      }
+
+      .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+      .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+        background-color: #2856D8;
+      }
+
+    }
+
+    .material-type {
+      font-weight: 600;
+    }
+
+    .company-name {
+      font-weight: 400;
+    }
+
+    .adress {
+      font-weight: 400;
+      color: #777986;
+    }
+
+    .chose-amound-div{ 
+      height: 40px;
+      width: 90%;
+      margin-left: 5%;
+      display: flex;
+
+      .num-input {
+        width: 20%;
+
+        .number-input::-webkit-outer-spin-button,
+        .number-input::-webkit-inner-spin-button{
+          -webkit-appearance: none;
+        }
+        
+        .number-input{
+          background: #F2F3F7;
+          outline:none;
+          border: none;
+          height: auto;
+          min-height: 40px;
+          padding-left: 10%;
+          width: 90%;
+        }
+
+        
+      }
+      
+      .measurement-name{
+        background: #F2F3F7;
+        height: 40px;
+        width: 20%; 
+        line-height: 40px;
+        padding: 1px;
+      }
+
+      .total{
+        margin-left: 15px;
+        height: 40px;
+        line-height: 40px;
+        padding: 1px;
+      }
+    }
+
+  }
+}

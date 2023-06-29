@@ -1,0 +1,21 @@
+@import "../../../colors.scss";
+
+.alert {
+  background-color: $primary2;
+  width: 100%;
+  text-align: center;
+  padding-top: 16px;
+  padding-bottom: 16px;
+
+  > span {
+    color: $primary6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      margin-right: 5px;
+    }
+  }
+
+}

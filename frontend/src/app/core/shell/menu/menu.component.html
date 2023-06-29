@@ -1,0 +1,25 @@
+<mat-sidenav-container class="nav-container" autosize>
+  <mat-sidenav mode="side" [opened]="opened$ | async" class="nav-side">
+    <ng-container *ngIf="revealed$ | async">
+      <h1 class="nav-header" (click)="hide()">Ctor</h1>
+        <div class="nav-list">
+          <a class="nav-item main-text"
+             *ngFor="let route of routes | async"
+             [class.selected]="selectedRoute == route.path"
+             routerLink="{{route.path}}"
+             (click)="onSelect(route.path)">{{route.displayName}}</a>
+          <a class="nav-item main-text" (click)="logout()">Вийти з системи</a>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="!(revealed$ | async)">
+      <div class="nav-hide">
+        <a (click)="reveal()">
+          <mat-icon svgIcon="caret-left-grey"></mat-icon>
+        </a>
+      </div>
+    </ng-container>
+  </mat-sidenav>
+  <mat-sidenav-content>
+      <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

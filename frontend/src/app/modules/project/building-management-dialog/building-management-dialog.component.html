@@ -1,0 +1,179 @@
+<!-- don't remove -->
+<app-button style="visibility: hidden; height: 0; width: 0; position: absolute;"></app-button>
+
+<app-modal-dialog-savecancel *ngIf="building$ | async as building">
+  <div header-content class="dialog-header">
+    <h3 *ngIf="!isEditing">{{building.buildingName}}</h3>
+    <app-input *ngIf="isEditing" [control]="buildingName"></app-input>
+    <button mat-icon-button *ngIf="!isEditing && (canEdit$ | async)" (click)="onEdit(building.buildingName)">
+      <mat-icon svgIcon="pencil"></mat-icon>
+    </button>
+    <button mat-icon-button *ngIf="!isEditing && (canEdit$ | async)" (click)="onDelete(building.id)">
+      <mat-icon svgIcon="trash"></mat-icon>
+    </button>
+    <button mat-icon-button *ngIf="isEditing" (click)="onSubmit(building)">
+      <mat-icon svgIcon="check"></mat-icon>
+    </button>
+    <button mat-icon-button *ngIf="isEditing" (click)="isEditing=false;buildingName.reset()">
+      <mat-icon svgIcon="cross"></mat-icon>
+    </button>
+  </div>
+  <div class="content">
+    <div class="add-buttons">
+      <button mat-flat-button class="add-btn add-service-btn" type="button" (click)="toggleServicesOverlay()"
+              cdkOverlayOrigin #servicesOverlayOrigin="cdkOverlayOrigin">
+        <mat-icon svgIcon="plus"></mat-icon>
+        <span>Додати послуги</span>
+      </button>
+
+      <button mat-flat-button class="add-btn add-material-btn" type="button" (click)="toggleMaterialsOverlay()"
+              cdkOverlayOrigin #materialsOverlayOrigin="cdkOverlayOrigin">
+        <mat-icon svgIcon="plus"></mat-icon>
+        <span>Додати матеріали</span>
+      </button>
+
+      <button mat-flat-button class="add-btn add-document-btn" type="button" (click)="toggleDocumentsOverlay()"
+              cdkOverlayOrigin #documentsOverlayOrigin="cdkOverlayOrigin">
+        <mat-icon svgIcon="plus"></mat-icon>
+        <span>Додати документи</span>
+      </button>
+
+    </div>
+
+    <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="servicesOverlayOrigin"
+                 [cdkConnectedOverlayOpen]="isServicesOverlayOpen">
+     <app-add-building-service [buildingId]="building.id" [projectId]="building.projectId"
+                               (cancel)="closeAllOverlays()" (submit)="closeAllOverlays()">
+
+     </app-add-building-service>
+    </ng-template>
+
+    <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="materialsOverlayOrigin"
+                 [cdkConnectedOverlayOpen]="isMaterialsOverlayOpen">
+      <add-building-material-overlay [buildingId]="building.id" [projectId]="building.projectId"
+                                  (cancel)="closeAllOverlays()" (submit)="closeAllOverlays()">
+      </add-building-material-overlay>
+    </ng-template>
+
+    <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="documentsOverlayOrigin"
+                 [cdkConnectedOverlayOpen]="isDocumentsOverlayOpen">
+      <app-add-building-document-overlay [buildingId]="building.id" [projectId]="building.projectId"
+                                         (cancel)="closeAllOverlays()" (submit)="closeAllOverlays()">
+      </app-add-building-document-overlay>
+    </ng-template>
+
+    <div>
+      <div class="section">
+        <div class="heading">
+          <span class="name">Послуги</span>
+          <span class="see-all" (click)="showAllServices = !showAllServices">
+          <span>{{(showAllServices ? 'Менше' : 'Більше')}}</span>
+          <mat-icon [svgIcon]="(showAllServices ? 'caret-up' : 'caret-down')"></mat-icon>
+        </span>
+        </div>
+
+        <div class="services-row" *ngFor="let service of servicesToShow | async">
+          <div>
+            <span class="service-type">{{service.types}}</span>
+            <span class="service-name">{{service.company}}</span>
+            <span class="remove-btn" *ngIf="canEdit$ | async" (click)="removeService(building.id, service.id)">
+            <mat-icon class="hover-icon" svgIcon="trash"></mat-icon>
+          </span>
+          </div>
+          <div class="service-content">
+            <div>
+              <span>{{service.email}}</span>
+            </div>
+            <span>
+              <span>{{service.phone}}</span>
+            </span>
+            <span>
+              <span>{{service.website}}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="heading">
+          <span class="name">Матеріали</span>
+          <span class="see-all" (click)="showAllMaterials = !showAllMaterials">
+          <span>{{(showAllMaterials ? 'Менше' : 'Більше')}}</span>
+          <mat-icon [svgIcon]="(showAllMaterials ? 'caret-up' : 'caret-down')"></mat-icon>
+        </span>
+        </div>
+
+        <div class="materials-row" *ngFor="let material of materialsToShow | async">
+          <div>
+            <span class="material-type">{{material.type}}</span>
+            <span class="material-name">{{material.companyName}}</span>
+            <span class="remove-btn" *ngIf="canEdit$ | async" (click)="removeMaterial(material.id)">
+            <mat-icon class="hover-icon" svgIcon="trash"></mat-icon>
+          </span>
+          </div>
+          <div class="material-content">
+            <span>
+              <span>{{material.amount}} {{material.measurement}}</span>
+            </span>
+            <span class="material-address">
+              <span>{{material.companyAddress}}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="heading">
+          <span class="name">Документи</span>
+          <span class="see-all" (click)="showAllDocuments = !showAllDocuments">
+          <span>{{(showAllDocuments ? 'Менше' : 'Більше')}}</span>
+          <mat-icon [svgIcon]="(showAllDocuments ? 'caret-up' : 'caret-down')"></mat-icon>
+        </span>
+        </div>
+
+        <div class="documents-row" *ngFor="let document of documentsToShow | async">
+          <div class="document-icon">
+            <mat-icon *ngIf="documentIcons.includes(document.type!)" [svgIcon]="'file-' + document.type"></mat-icon>
+          </div>
+          <div style="width: 100%;">
+            <div>
+              <span class="document-name" (click)="downloadDocument(document)">{{document.fileName}}</span>
+              <span class="remove-btn" *ngIf="canEdit$ | async" (click)="removeDocument(document.id)">
+                <mat-icon class="hover-icon" svgIcon="trash"></mat-icon>
+              </span>
+            </div>
+            <div class="document-content">
+              <span>{{document.created | date: 'dd.MM.yyyy'}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="progress-bar">
+      <span>{{building.buildingProgress}}%</span>
+      <mat-progress-bar mode="determinate" value="{{building.buildingProgress}}"></mat-progress-bar>
+    </div>
+    <div>
+      <div class="add-subsection" (click)="isAdding=!isAdding">
+        <mat-icon svgIcon="plus"></mat-icon>
+        <span class="small-text">Додати секцію</span>
+      </div>
+    </div>
+    <app-building-adding-list-item *ngIf="isAdding"
+                                   [placeholder]="'Add A Project Building Blocks'"
+                                   (cancelClicked)="isAdding=false"
+                                   (submitClicked)="onSubmitAdding($event, building.id)"></app-building-adding-list-item>
+    <div class="subsection-list-item"
+         *ngFor="let buildingBlock of building.buildingBlocks"
+         (mouseover)="isMouseOverSubsectionListItem=true"
+         (mouseleave)="isMouseOverSubsectionListItem=false">
+      <mat-checkbox (change)="editBuildingBlock($event.checked, buildingBlock)"
+                    [checked]="buildingBlock.isDone">{{buildingBlock.buildingBlockName}}</mat-checkbox>
+      <button mat-icon-button [class.hidden]="!isMouseOverSubsectionListItem"
+              (click)="deleteSubsection(buildingBlock.id)">
+        <mat-icon svgIcon="cross"></mat-icon>
+      </button>
+    </div>
+  </div>
+</app-modal-dialog-savecancel>

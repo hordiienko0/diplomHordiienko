@@ -1,0 +1,26 @@
+.header {
+  display: flex;
+  margin: 24px 48px;
+  align-items: center;
+}
+
+.header-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.btn-group-item {
+  cursor: pointer;
+}
+
+.add-company {
+  margin-left: auto;
+}
+
+.company-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-inline: 48px;
+  gap: 32px;
+}

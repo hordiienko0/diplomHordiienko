@@ -1,0 +1,58 @@
+:host::ng-deep {
+  .carousel-dots {
+    .carousel-dot-active {
+      border: 2px solid #ffbd93 !important;
+      background: #ffbd93 !important;
+      opacity: 1 !important;
+    }
+    .carousel-dot {
+      background: #ffffff;
+      opacity: 0.4;
+    }
+  }
+}
+
+.container {
+  :hover + .buttons_container {
+    visibility: visible;
+  }
+  .carousel_container {
+    position: absolute;
+    .carousel {
+      pointer-events: none;
+      z-index: 1;
+    }
+  }
+
+  .buttons_container {
+    pointer-events: all;
+    visibility: hidden;
+    :hover{
+      visibility: visible;
+    }
+    .buttons {
+      display: flex;
+      box-sizing: border-box;
+      z-index: 2;
+      width: inherit;
+      height: inherit;
+      position: absolute;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: .5vmin;
+      .button_delete {
+        display: flex;
+        justify-content: flex-end;
+      }
+      .buttons_carrets {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  .mat-icon-button {
+    border-radius: 0%;
+    background: rgba(255, 246, 238, 0.4);
+  }
+}

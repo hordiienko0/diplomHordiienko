@@ -1,0 +1,26 @@
+<mat-form-field class="inherited-values" appearance="fill" [color]="">
+  <mat-label>{{label}}</mat-label>
+  <mat-chip-list #chipList>
+    <mat-chip
+      *ngFor="let option of _outputOptions"
+      (removed)="remove(option)">
+      {{option}}
+      <button matChipRemove>
+        <mat-icon svgIcon="delete"></mat-icon>
+      </button>
+    </mat-chip>
+    <input
+      [placeholder]="placeholder"
+      #optionsInput
+      [formControl]="formControlInner"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+      {{option}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

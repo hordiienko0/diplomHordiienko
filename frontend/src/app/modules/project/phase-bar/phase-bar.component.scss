@@ -1,0 +1,39 @@
+@use '../../../shared/colors' as colors;
+
+.arrow {
+  display: inline-flex;
+  position: relative;
+  height: 40px;
+  margin-left: 4px;
+  background-color: var(--color);
+
+  &:not(:first-child):before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 25px solid #f8f8f8;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 25px solid var(--color);
+    right: -25px;
+  }
+  
+  .phase-name {
+    margin: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: colors.$gray7;
+  }
+
+}

@@ -1,0 +1,30 @@
+<div class="wrapper">
+  <app-filter-input class="search" (onSearchQuery)="searchService($event)"></app-filter-input>
+  <div>
+    <div class="checkbox-wrapper" *ngIf="($services|async)?.length!=0">
+      <mat-checkbox  *ngFor="let service of $services|async" (change)="selectionChange($event, service)">
+        <div class="checkbox-value">
+          <div class="type">{{service.types}}</div>
+          <div>{{service.company}}</div>
+        </div>
+      </mat-checkbox>
+    </div>
+    <div class="checkbox-wrapper" *ngIf="($services|async)?.length==0">
+      Не залишилося жодного сервісу
+    </div>
+    <div class="selected-service-wrapper">
+      <div class="selected-service_row" *ngFor="let service of selectedServices">
+        <div>
+          <div class="type" >{{service.types}}</div>
+          <div>{{service.company}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="action-wrapper">
+    <app-mini-button class="action" (click)="submitServices()">Confirm</app-mini-button>
+    <app-mini-button (click)="cancelServices()">Cancel</app-mini-button>
+  </div>
+</div>
+
+

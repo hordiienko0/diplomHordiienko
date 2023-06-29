@@ -1,0 +1,36 @@
+<app-input (input)="search($event)" autocomplete="off"></app-input>
+
+<div class="search-results">
+    <div *ngFor="let material of (availableMaterials$ | async)" class="search-result">
+    <mat-checkbox (change)="selectionChange($event, material)" [checked]="isSelected(material.id)">
+        <span class="material-type">{{material.materialTypeName}}</span><br>
+        <span class="company-name">{{material.companyName}}</span><br>
+        <span class="adress">{{material.companyAddress}}</span>
+    </mat-checkbox>
+    <div *ngIf="isSelected(material.id)" class="chose-amound-div"> 
+        <div class="num-input"> 
+           <!-- 
+                custom input doesn`t let us put max min, and hide spinner
+            <app-input type="number" (input)="changeAmount($event, material.id)"></app-input>-->
+           <input class="number-input" type="number" min="1" value="{{startValue(material.id)}}" max="{{material.amount}}" (input)="changeAmount($event, material.id)" /> 
+        </div>
+        <div class="measurement-name">{{material.measurementName}}</div>
+        <div class="total">{{getTotal(material.id)}}$</div>
+    </div>   
+    </div>
+</div>
+
+<div class="selected-container">
+    <div *ngFor="let material of chosenMaterials" class="selected-item">
+    <div>
+        <span class="material-type">{{material.materialTypeName}}</span><br>
+        <span class="measurement">{{material.amount}} {{material.measurementName}}</span>
+    </div>
+    <mat-icon class="close" svgIcon="delete" (click)="unselectUser(material)"></mat-icon>
+    </div>
+</div>
+
+<div class="confirmation-buttons">
+    <app-mini-button class="cancel-btn" (click)="cancelSelected()">Cancel</app-mini-button>
+    <app-mini-button (click)="submitSelected()">Confirm</app-mini-button>
+</div>

@@ -1,0 +1,80 @@
+.nameAndIdContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+
+  width: 100%;
+  height: 56px;
+
+  /* orange/2 */
+
+  background: #FFEBD3;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.name {
+  /* Project ID */
+  margin: 0px 0px 0px 15px;
+
+  width: 207px;
+  height: 24px;
+
+  /* main text */
+
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+
+
+  /* grey7 */
+
+  color: #515364;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 1;
+}
+
+.id {
+  /* 47821457 */
+
+  margin: 0 12px 0px 0px;
+  width: 207px;
+  height: 24px;
+
+  /* main text */
+
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+
+  text-align: right;
+
+  /* gray10 */
+
+  color: #080910;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 1;
+}

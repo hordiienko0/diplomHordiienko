@@ -1,0 +1,24 @@
+<app-underlined-button (click)="dropzone._onClick()">Прикріпіть файл з вашого комп'ютера</app-underlined-button>
+
+<ngx-dropzone #dropzone [ngStyle]="dropzoneStyle"
+              [ngClass]="files.length !== 0 ? 'loaded' : 'ds'"
+              style="max-width: 500px;"
+              (change)="onSelect($event)"
+              accept=".jpg, .jpeg, .png, .avi, .mov, .pdf, .mp4, .zip, .txt, .csv, .doc, .docx, .xlsx">
+
+  <ngx-dropzone-preview
+    *ngFor="let f of files"
+    [removable]="true"
+    (removed)="onRemove(f)"
+    style="min-height: unset; height: unset;">
+    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+  </ngx-dropzone-preview>
+
+</ngx-dropzone>
+
+<app-input [control]="linkFormControl" label="Додати посилання"></app-input>
+
+<div class="confirmation-buttons">
+  <app-mini-button class="cancel-btn" (click)="onCancel()">Скасувати</app-mini-button>
+  <app-mini-button [disabled]="files.length === 0 && link == ''" (click)="onSubmit()">Підтвердити</app-mini-button>
+</div>
